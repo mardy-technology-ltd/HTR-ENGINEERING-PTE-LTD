@@ -6,7 +6,6 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ProjectController;
-use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\TestimonialController;
 use Illuminate\Support\Facades\Route;
@@ -64,9 +63,6 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     
     // Testimonials
     Route::resource('testimonials', TestimonialController::class)->except(['show']);
-    
-    // Gallery
-    Route::resource('gallery', GalleryController::class)->except(['show']);
     
     // Contacts
     Route::get('contacts', [ContactController::class, 'index'])->name('contacts.index');
