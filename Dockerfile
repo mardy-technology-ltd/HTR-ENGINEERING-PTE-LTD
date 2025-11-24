@@ -27,13 +27,13 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy application files
 COPY . /var/www/html
 
-# Install dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+# Create directories and set permissions BEFORE composer install
+RUN mkdir -p bootstrap/cache storage/framework/views storage/framework/sessions storage/framework/cache storage/logs \
+    && chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 bootstrap/cache storage
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage \
-    && chmod -R 755 /var/www/html/bootstrap/cache
+# Install dependencies (permissions already set above)
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Copy nginx config
 COPY docker/nginx.conf /etc/nginx/sites-available/default
