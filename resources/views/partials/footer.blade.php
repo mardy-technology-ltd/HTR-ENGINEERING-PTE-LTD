@@ -3,15 +3,13 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {{-- Company Info --}}
             <div>
-                <div class="flex items-center space-x-2 mb-4">
-                    <div class="bg-primary-700 text-white p-2 rounded-lg">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                        </svg>
-                    </div>
+                <div class="flex items-center space-x-3 mb-4">
+                    <img src="{{ asset('images/logo.png') }}" 
+                         alt="HTR ENGINEERING PTE LTD Logo" 
+                         class="h-12 w-auto object-contain bg-white rounded-lg p-1">
                     <div>
-                        <div class="font-bold text-white text-sm">Roller Shutter</div>
-                        <div class="text-xs">& Construction Pte. Ltd.</div>
+                        <div class="font-bold text-white text-sm">HTR ENGINEERING</div>
+                        <div class="text-xs">PTE LTD</div>
                     </div>
                 </div>
                 <p class="text-sm leading-relaxed mb-4">
