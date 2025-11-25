@@ -175,4 +175,4 @@ Frontend contact form submissions are saved to database and displayed in admin p
 
 ---
 
-**Admin Panel Built with ❤️ for Roller Shutter & Construction Pte. Ltd.**
+**Admin Panel Built with ❤️ for HTR ENGINEERING PTE LTD**

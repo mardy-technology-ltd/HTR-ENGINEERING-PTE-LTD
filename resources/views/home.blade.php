@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Home - Roller Shutter & Construction Pte. Ltd. Singapore')
+@section('title', 'Home - HTR ENGINEERING PTE LTD Singapore')
 @section('meta_description', 'Professional roller shutters, security grilles, automatic gates & doors in Singapore. Quality construction services with over 15 years of experience. Contact us at +65 8544 5560.')
 
 @section('content')

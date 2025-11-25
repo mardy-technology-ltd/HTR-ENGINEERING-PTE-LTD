@@ -21,11 +21,11 @@ return new class extends Migration
         
         // Insert default values
         DB::table('settings')->insert([
-            ['key' => 'phone', 'value' => '+65 8544 5560', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'phone', 'value' => '+65 8697 3181', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'email', 'value' => 'rollershutter14@gmail.com', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'business_hours', 'value' => 'Mon-Fri: 9AM-6PM | Sat: 9AM-1PM', 'created_at' => now(), 'updated_at' => now()],
             ['key' => 'address', 'value' => 'Singapore', 'created_at' => now(), 'updated_at' => now()],
-            ['key' => 'whatsapp', 'value' => '6585445560', 'created_at' => now(), 'updated_at' => now()],
+            ['key' => 'whatsapp', 'value' => '6586973181', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 

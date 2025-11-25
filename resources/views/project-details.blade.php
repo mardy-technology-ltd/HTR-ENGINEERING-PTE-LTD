@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $project->title . ' - Project Details | Roller Shutter & Construction')
+@section('title', $project->title . ' - Project Details | HTR ENGINEERING PTE LTD')
 @section('meta_description', $project->description)
 
 @section('content')

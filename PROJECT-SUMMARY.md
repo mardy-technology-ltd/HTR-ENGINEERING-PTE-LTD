@@ -66,7 +66,7 @@ This document provides a complete overview of the delivered Laravel 11 website f
 
 | Detail | Value |
 |--------|-------|
-| Company Name | Roller Shutter & Construction Pte. Ltd. |
+| Company Name | HTR ENGINEERING PTE LTD (GST/UEN: 20154246D) |
 | Address | 66 Tannery Lane #01-03D Sindo Building, Singapore 347805 |
 | Phone | +65 8544 5560 |
 | Email | rollershutter14@gmail.com |
@@ -244,7 +244,7 @@ CREATE TABLE contacts (
 ```json
 {
   "@type": "LocalBusiness",
-  "name": "Roller Shutter & Construction Pte. Ltd.",
+  "name": "HTR ENGINEERING PTE LTD",
   "address": {...},
   "telephone": "+6585445560",
   "openingHours": [...],

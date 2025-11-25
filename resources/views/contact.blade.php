@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Contact Us - Roller Shutter & Construction Pte. Ltd.')
-@section('meta_description', 'Contact Roller Shutter & Construction for professional installation services. Located at 66 Tannery Lane, Singapore. Call +65 8544 5560 or email rollershutter14@gmail.com.')
+@section('title', 'Contact Us - HTR ENGINEERING PTE LTD')
+@section('meta_description', 'Contact HTR ENGINEERING for professional installation services. Located at 105 Sims Avenue, Singapore. Call +65 8697 3181 or email rollershutter14@gmail.com.')
 
 @section('content')
 {{-- Page Header --}}
@@ -149,9 +149,9 @@
                             <div>
                                 <h3 class="font-bold text-gray-900 mb-1">Address</h3>
                                 <p class="text-gray-600">
-                                    66 Tannery Lane #01-03D<br>
-                                    Sindo Building<br>
-                                    Singapore 347805
+                                    105 Sims Avenue #05-11<br>
+                                    Chancerlodge Complex<br>
+                                    Singapore 387429
                                 </p>
                             </div>
                         </div>
@@ -166,7 +166,7 @@
                             <div>
                                 <h3 class="font-bold text-gray-900 mb-1">Phone</h3>
                                 <a href="tel:+6585445560" class="text-primary-700 hover:text-primary-800 font-semibold">
-                                    +65 8544 5560
+                                    +65 8697 3181
                                 </a>
                             </div>
                         </div>
@@ -230,7 +230,7 @@
                             allowfullscreen="" 
                             loading="lazy"
                             class="rounded-b-2xl"
-                            title="Roller Shutter & Construction Location">
+                            title="HTR ENGINEERING Location">
                         </iframe>
                     </div>
                 </div>

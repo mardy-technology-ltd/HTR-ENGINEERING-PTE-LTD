@@ -22,5 +22,5 @@ Submitted: {{ $contact->created_at->format('d M Y, h:i A') }}
 
 ---
 This email was sent from the contact form on your website.
-Roller Shutter & Construction Pte. Ltd.
-66 Tannery Lane #01-03D, Singapore 347805
+HTR ENGINEERING PTE LTD
+105 Sims Avenue #05-11 Chancerlodge Complex, Singapore 387429

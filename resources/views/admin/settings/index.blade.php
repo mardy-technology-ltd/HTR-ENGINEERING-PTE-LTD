@@ -35,7 +35,7 @@
                                value="{{ old('phone', $settings['phone'] ?? '') }}"
                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 @error('phone') border-red-500 @enderror"
                                required
-                               placeholder="+65 8544 5560">
+                               placeholder="+65 8697 3181">
                         @error('phone')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror

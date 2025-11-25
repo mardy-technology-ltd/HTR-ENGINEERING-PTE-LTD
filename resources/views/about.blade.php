@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'About Us - Roller Shutter & Construction Pte. Ltd.')
-@section('meta_description', 'Learn about Roller Shutter & Construction Pte. Ltd. - Over 15 years of experience providing quality roller shutters, security solutions, and construction services in Singapore.')
+@section('title', 'About Us - HTR ENGINEERING PTE LTD')
+@section('meta_description', 'Learn about HTR ENGINEERING PTE LTD - Over 15 years of experience providing quality roller shutters, security solutions, and construction services in Singapore.')
 
 @section('content')
 {{-- Page Header --}}
@@ -24,7 +24,7 @@
                 </h2>
                 <div class="prose prose-lg text-gray-600">
                     <p class="mb-4">
-                        Roller Shutter & Construction Pte. Ltd. is a leading provider of roller shutters, security grilles, automatic gates, and comprehensive construction services in Singapore. With over 15 years of industry experience, we have established ourselves as a trusted name in the market.
+                        HTR ENGINEERING PTE LTD is a leading provider of roller shutters, security grilles, automatic gates, and comprehensive construction services in Singapore. With over 15 years of industry experience, we have established ourselves as a trusted name in the market.
                     </p>
                     <p class="mb-4">
                         Our company was founded with a simple mission: to provide high-quality, reliable, and cost-effective security and construction solutions to businesses and homeowners across Singapore. Today, we serve a diverse clientele ranging from small residential properties to large industrial complexes.
@@ -37,7 +37,7 @@
             <div class="relative">
                 <div class="bg-primary-100 rounded-2xl p-8 shadow-xl">
                     <img src="{{ asset('storage/about-office.jpg') }}" 
-                         alt="Roller Shutter & Construction Office" 
+                         alt="HTR ENGINEERING Office" 
                          class="rounded-lg shadow-lg w-full"
                          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%23e5e7eb\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%239ca3af\' font-family=\'sans-serif\' font-size=\'24\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EOur Company%3C/text%3E%3C/svg%3E'">
                 </div>

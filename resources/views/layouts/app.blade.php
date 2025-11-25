@@ -6,24 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     {{-- SEO Meta Tags --}}
-    <title>@yield('title', 'Roller Shutter & Construction Pte. Ltd. - Singapore')</title>
+    <title>@yield('title', 'HTR ENGINEERING PTE LTD - Singapore')</title>
     <meta name="description" content="@yield('meta_description', 'Professional roller shutters, security grilles, automatic gates and doors in Singapore. Quality construction services with over 15 years of experience.')">
     <meta name="keywords" content="roller shutters singapore, security grilles, automatic gates, automatic doors, metal works, construction singapore">
-    <meta name="author" content="Roller Shutter & Construction Pte. Ltd.">
+    <meta name="author" content="HTR ENGINEERING PTE LTD">
     <link rel="canonical" href="@yield('canonical', url()->current())">
     
     {{-- Open Graph Tags --}}
-    <meta property="og:title" content="@yield('og_title', 'Roller Shutter & Construction Pte. Ltd.')">
+    <meta property="og:title" content="@yield('og_title', 'HTR ENGINEERING PTE LTD')">
     <meta property="og:description" content="@yield('og_description', 'Professional roller shutters, security grilles, automatic gates and doors in Singapore.')">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="@yield('og_image', asset('images/og-image.jpg'))">
     <meta property="og:locale" content="en_SG">
-    <meta property="og:site_name" content="Roller Shutter & Construction Pte. Ltd.">
+    <meta property="og:site_name" content="HTR ENGINEERING PTE LTD">
     
     {{-- Twitter Card Tags --}}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('og_title', 'Roller Shutter & Construction Pte. Ltd.')">
+    <meta name="twitter:title" content="@yield('og_title', 'HTR ENGINEERING PTE LTD')">
     <meta name="twitter:description" content="@yield('og_description', 'Professional roller shutters, security grilles, automatic gates and doors in Singapore.')">
     <meta name="twitter:image" content="@yield('og_image', asset('images/og-image.jpg'))">
     
@@ -100,14 +100,14 @@
     echo json_encode([
         "@context" => "https://schema.org",
         "@type" => "LocalBusiness",
-        "name" => "Roller Shutter & Construction Pte. Ltd.",
+        "name" => "HTR ENGINEERING PTE LTD",
         "image" => asset('images/logo.png'),
         "description" => "Professional roller shutters, security grilles, automatic gates and doors installation services in Singapore.",
         "address" => [
             "@type" => "PostalAddress",
-            "streetAddress" => "66 Tannery Lane #01-03D Sindo Building",
+            "streetAddress" => "105 Sims Avenue #05-11 Chancerlodge Complex",
             "addressLocality" => "Singapore",
-            "postalCode" => "347805",
+            "postalCode" => "387429",
             "addressCountry" => "SG"
         ],
         "geo" => [

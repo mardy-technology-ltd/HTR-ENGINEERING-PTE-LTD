@@ -138,14 +138,14 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
-                        <span>66 Tannery Lane #01-03D<br>Sindo Building<br>Singapore 347805</span>
+                        <span>105 Sims Avenue #05-11<br>Chancerlodge Complex<br>Singapore 387429</span>
                     </li>
                     <li>
                         <a href="tel:{{ str_replace(' ', '', App\Models\Setting::get('phone', '+6585445560')) }}" class="flex items-center hover:text-primary-400 transition-colors">
                             <svg class="w-5 h-5 mr-3 text-primary-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
-                            {{ App\Models\Setting::get('phone', '+65 8544 5560') }}
+                            {{ App\Models\Setting::get('phone', '+65 8697 3181') }}
                         </a>
                     </li>
                     <li>
@@ -164,7 +164,7 @@
         <div class="border-t border-gray-800 mt-8 pt-8">
             <div class="flex flex-col md:flex-row justify-between items-center text-sm">
                 <p class="mb-4 md:mb-0">
-                    &copy; {{ date('Y') }} Roller Shutter & Construction Pte. Ltd. All rights reserved.
+                    &copy; {{ date('Y') }} HTR ENGINEERING PTE LTD. All rights reserved.
                 </p>
                 <div class="flex space-x-6">
                     <a href="#" class="hover:text-primary-400 transition-colors">Privacy Policy</a>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Admin Panel') - Roller Shutter & Construction</title>
+    <title>@yield('title', 'Admin Panel') - HTR ENGINEERING PTE LTD</title>
     
     {{-- Tailwind CSS --}}
     <script src="https://cdn.tailwindcss.com"></script>
@@ -187,7 +187,7 @@
                         </button>
                         <div>
                             <h1 class="text-2xl font-bold text-gray-800">@yield('page-title', 'Dashboard')</h1>
-                            <p class="text-sm text-gray-500">Roller Shutter & Construction Pte. Ltd.</p>
+                            <p class="text-sm text-gray-500">HTR ENGINEERING PTE LTD<br><small class="text-xs">GST/UEN: 20154246D</small></p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-4">

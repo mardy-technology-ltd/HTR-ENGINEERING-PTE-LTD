@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Gallery - Our Projects | Roller Shutter & Construction')
+@section('title', 'Gallery - Our Projects | HTR ENGINEERING PTE LTD')
 @section('meta_description', 'View our portfolio of completed roller shutter, security grilles, automatic gates installations across commercial, industrial and residential projects in Singapore.')
 
 @section('content')

@@ -113,7 +113,7 @@
         </div>
         <div class="footer">
             <p>This email was sent from the contact form on your website.<br>
-            Roller Shutter & Construction Pte. Ltd. | 66 Tannery Lane #01-03D, Singapore 347805</p>
+            HTR ENGINEERING PTE LTD | 105 Sims Avenue #05-11 Chancerlodge Complex, Singapore 387429</p>
         </div>
     </div>
 </body>

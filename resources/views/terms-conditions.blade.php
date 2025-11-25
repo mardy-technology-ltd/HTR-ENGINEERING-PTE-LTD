@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Terms and Conditions - Roller Shutter & Construction Pte. Ltd.')
-@section('meta_description', 'Read the terms and conditions for Roller Shutter & Construction Pte. Ltd. services in Singapore.')
+@section('title', 'Terms and Conditions - HTR ENGINEERING PTE LTD')
+@section('meta_description', 'Read the terms and conditions for HTR ENGINEERING PTE LTD services in Singapore.')
 
 @section('content')
 {{-- Page Header --}}
@@ -40,7 +40,7 @@
                     <a href="tel:{{ str_replace(' ', '', App\Models\Setting::get('phone', '+6585445560')) }}" 
                        class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium">
                         <i class="fas fa-phone mr-2"></i>
-                        {{ App\Models\Setting::get('phone', '+65 8544 5560') }}
+                        {{ App\Models\Setting::get('phone', '+65 8697 3181') }}
                     </a>
                 </div>
             </div>

@@ -1,6 +1,6 @@
-# Roller Shutter & Construction Pte. Ltd. - Website
+# HTR ENGINEERING PTE LTD - Website
 
-A professional business website built with Laravel 11, MySQL, and Tailwind CSS for Roller Shutter & Construction Pte. Ltd., a leading provider of roller shutters, security grilles, automatic gates, and construction services in Singapore.
+A professional business website built with Laravel 11, MySQL, and Tailwind CSS for HTR ENGINEERING PTE LTD, a leading provider of roller shutters, security grilles, automatic gates, and construction services in Singapore.
 
 ## 🏢 About the Project
 
@@ -128,7 +128,7 @@ MAIL_USERNAME=your-mailtrap-username
 MAIL_PASSWORD=your-mailtrap-password
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS=rollershutter14@gmail.com
-MAIL_FROM_NAME="Roller Shutter & Construction"
+MAIL_FROM_NAME="HTR ENGINEERING PTE LTD"
 ```
 
 ### 7. Storage Link
