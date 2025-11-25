@@ -20,7 +20,7 @@ return new class extends Migration
         // Insert default terms and conditions
         DB::table('terms_conditions')->insert([
             'content' => '<h2>Terms and Conditions</h2>
-<p>Welcome to Roller Shutter & Construction Pte. Ltd. By accessing and using our website and services, you agree to comply with and be bound by the following terms and conditions.</p>
+<p>Welcome to HTR ENGINEERING PTE LTD. By accessing and using our website and services, you agree to comply with and be bound by the following terms and conditions.</p>
 
 <h3>1. Services</h3>
 <p>We provide professional roller shutter installation, repair, maintenance, and construction services in Singapore. All services are subject to availability and our standard terms of engagement.</p>
