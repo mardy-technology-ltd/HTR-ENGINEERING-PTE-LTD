@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\ProjectController;
@@ -24,23 +25,7 @@ Route::post('/contact', [PageController::class, 'submitContact'])->name('contact
 Route::get('/terms-conditions', [PageController::class, 'termsConditions'])->name('terms-conditions');
 
 // Sitemap
-Route::get('/sitemap.xml', function () {
-    $sitemap = '<?xml version="1.0" encoding="UTF-8"?>';
-    $sitemap .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
-    
-    $routes = ['home', 'about', 'services', 'gallery', 'contact'];
-    foreach ($routes as $route) {
-        $sitemap .= '<url>';
-        $sitemap .= '<loc>' . route($route) . '</loc>';
-        $sitemap .= '<changefreq>weekly</changefreq>';
-        $sitemap .= '<priority>0.8</priority>';
-        $sitemap .= '</url>';
-    }
-    
-    $sitemap .= '</urlset>';
-    
-    return response($sitemap, 200)->header('Content-Type', 'application/xml');
-})->name('sitemap');
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // Breeze Authentication Routes
 Route::middleware('auth')->group(function () {
