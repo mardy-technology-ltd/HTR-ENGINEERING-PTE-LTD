@@ -176,14 +176,4 @@ class PageController extends Controller
                 ->with('error', 'An error occurred. Please try again later.');
         }
     }
-
-    /**
-     * Display the terms and conditions page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function termsConditions()
-    {
-        return view('terms-conditions');
-    }
 }

@@ -105,19 +105,19 @@
         "description" => "Professional roller shutters, security grilles, automatic gates and doors installation services in Singapore.",
         "address" => [
             "@type" => "PostalAddress",
-            "streetAddress" => "105 Sims Avenue #05-11 Chancerlodge Complex",
-            "addressLocality" => "Singapore",
-            "postalCode" => "387429",
+            "streetAddress" => App\Models\Setting::get('address_line1', '105 Sims Avenue #05-11 Chancerlodge Complex'),
+            "addressLocality" => App\Models\Setting::get('city', 'Singapore'),
+            "postalCode" => App\Models\Setting::get('postal_code', '387429'),
             "addressCountry" => "SG"
         ],
         "geo" => [
             "@type" => "GeoCoordinates",
-            "latitude" => 1.3274,
-            "longitude" => 103.8779
+            "latitude" => (float) App\Models\Setting::get('latitude', '1.3274'),
+            "longitude" => (float) App\Models\Setting::get('longitude', '103.8779')
         ],
         "url" => url('/'),
-        "telephone" => "+6585445560",
-        "email" => "rollershutter14@gmail.com",
+        "telephone" => App\Models\Setting::get('phone', '+6585445560'),
+        "email" => App\Models\Setting::get('email', 'rollershutter14@gmail.com'),
         "priceRange" => "$$",
         "openingHoursSpecification" => [
             [

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\AdminController;
 use App\Models\AboutContent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;

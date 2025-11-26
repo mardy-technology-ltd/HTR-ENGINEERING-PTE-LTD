@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Contact Us - HTR ENGINEERING PTE LTD')
-@section('meta_description', 'Contact HTR ENGINEERING for professional installation services. Located at 105 Sims Avenue, Singapore. Call +65 8697 3181 or email rollershutter14@gmail.com.')
+@section('meta_description', 'Contact HTR ENGINEERING for professional installation services. Located at ' . App\Models\Setting::get('address_line1', '105 Sims Avenue, Singapore') . '. Call ' . App\Models\Setting::get('phone', '+65 8697 3181') . ' or email ' . App\Models\Setting::get('email', 'rollershutter14@gmail.com') . '.')
 
 @section('content')
 {{-- Page Header --}}
@@ -149,9 +149,7 @@
                             <div>
                                 <h3 class="font-bold text-gray-900 mb-1">Address</h3>
                                 <p class="text-gray-600">
-                                    105 Sims Avenue #05-11<br>
-                                    Chancerlodge Complex<br>
-                                    Singapore 387429
+                                    {!! nl2br(e(App\Models\Setting::get('address', '105 Sims Avenue #05-11\nChancerlodge Complex\nSingapore 387429'))) !!}
                                 </p>
                             </div>
                         </div>
@@ -165,8 +163,8 @@
                             </div>
                             <div>
                                 <h3 class="font-bold text-gray-900 mb-1">Phone</h3>
-                                <a href="tel:+6585445560" class="text-primary-700 hover:text-primary-800 font-semibold">
-                                    +65 8697 3181
+                                <a href="tel:{{ str_replace(' ', '', App\Models\Setting::get('phone', '+6585445560')) }}" class="text-primary-700 hover:text-primary-800 font-semibold">
+                                    {{ App\Models\Setting::get('phone', '+65 8697 3181') }}
                                 </a>
                             </div>
                         </div>
@@ -180,8 +178,8 @@
                             </div>
                             <div>
                                 <h3 class="font-bold text-gray-900 mb-1">Email</h3>
-                                <a href="mailto:rollershutter14@gmail.com" class="text-primary-700 hover:text-primary-800 font-semibold break-all">
-                                    rollershutter14@gmail.com
+                                <a href="mailto:{{ App\Models\Setting::get('email', 'rollershutter14@gmail.com') }}" class="text-primary-700 hover:text-primary-800 font-semibold break-all">
+                                    {{ App\Models\Setting::get('email', 'rollershutter14@gmail.com') }}
                                 </a>
                             </div>
                         </div>
@@ -196,9 +194,7 @@
                             <div>
                                 <h3 class="font-bold text-gray-900 mb-1">Business Hours</h3>
                                 <p class="text-gray-600">
-                                    Mon - Fri: 9:00 AM - 6:00 PM<br>
-                                    Saturday: 9:00 AM - 1:00 PM<br>
-                                    Sunday: Closed
+                                    {!! nl2br(e(App\Models\Setting::get('business_hours_detail', 'Mon - Fri: 9:00 AM - 6:00 PM\nSaturday: 9:00 AM - 1:00 PM\nSunday: Closed'))) !!}
                                 </p>
                             </div>
                         </div>
@@ -206,7 +202,7 @@
 
                     {{-- WhatsApp Button --}}
                     <div class="mt-8 pt-8 border-t border-gray-200">
-                        <a href="https://wa.me/6585445560" 
+                        <a href="https://wa.me/{{ App\Models\Setting::get('whatsapp', '6585445560') }}" 
                            target="_blank" 
                            rel="noopener noreferrer"
                            class="flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-lg font-bold transition-colors">

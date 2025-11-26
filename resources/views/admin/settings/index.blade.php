@@ -83,7 +83,7 @@
 
                     <div>
                         <label for="business_hours" class="block text-gray-700 font-semibold mb-2">
-                            Business Hours <span class="text-red-500">*</span>
+                            Business Hours (Short) <span class="text-red-500">*</span>
                         </label>
                         <input type="text" 
                                name="business_hours" 
@@ -94,20 +94,31 @@
                                placeholder="Mon-Fri: 9AM-6PM | Sat: 9AM-1PM">
                         <p class="text-xs text-gray-500 mt-1">
                             <i class="fas fa-info-circle mr-1"></i>
-                            Enter your business hours in any format you prefer
+                            Short format for header/footer display
                         </p>
-                        <div class="mt-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-                            <p class="text-xs text-gray-600 mb-1"><strong>Example formats:</strong></p>
-                            <ul class="text-xs text-gray-600 space-y-1">
-                                <li>• Mon-Fri: 9AM-6PM | Sat: 9AM-1PM</li>
-                                <li>• Monday-Friday: 9am-6pm | Saturday: 9am-1pm</li>
-                                <li>• Mon-Fri: 9:00 AM - 6:00 PM, Sat: 9:00 AM - 1:00 PM</li>
-                            </ul>
-                        </div>
                         @error('business_hours')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>
+                </div>
+                
+                <div class="mt-6">
+                    <label for="business_hours_detail" class="block text-gray-700 font-semibold mb-2">
+                        Business Hours (Detailed)
+                    </label>
+                    <textarea 
+                           name="business_hours_detail" 
+                           id="business_hours_detail" 
+                           rows="4"
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 @error('business_hours_detail') border-red-500 @enderror"
+                           placeholder="Mon - Fri: 9:00 AM - 6:00 PM&#10;Saturday: 9:00 AM - 1:00 PM&#10;Sunday: Closed">{{ old('business_hours_detail', $settings['business_hours_detail'] ?? '') }}</textarea>
+                    <p class="text-xs text-gray-500 mt-1">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        Detailed format for contact page (separate lines for each day)
+                    </p>
+                    @error('business_hours_detail')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
 
@@ -116,18 +127,19 @@
                 
                 <div>
                     <label for="address" class="block text-gray-700 font-semibold mb-2">
-                        Address <span class="text-red-500">*</span>
+                        Full Address <span class="text-red-500">*</span>
                     </label>
-                    <input type="text" 
+                    <textarea 
                            name="address" 
                            id="address" 
-                           value="{{ old('address', $settings['address'] ?? '') }}"
+                           rows="3"
                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 @error('address') border-red-500 @enderror"
                            required
-                           placeholder="Singapore">
+                           placeholder="105 Sims Avenue #05-11&#10;Chancerlodge Complex&#10;Singapore 387429">{{ old('address', $settings['address'] ?? '') }}</textarea>
                     @error('address')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
+                    <p class="text-sm text-gray-500 mt-1">Enter address with line breaks for proper display</p>
                 </div>
             </div>
 

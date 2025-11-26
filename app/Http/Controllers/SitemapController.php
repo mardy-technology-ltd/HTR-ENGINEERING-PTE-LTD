@@ -28,9 +28,6 @@ class SitemapController extends Controller
         // Contact Page
         $sitemap .= $this->addUrl(route('contact'), now(), 'monthly', '0.7');
         
-        // Terms & Conditions Page
-        $sitemap .= $this->addUrl(route('terms-conditions'), now(), 'monthly', '0.5');
-        
         // Dynamic Project Pages
         $projects = Project::all();
         foreach ($projects as $project) {
