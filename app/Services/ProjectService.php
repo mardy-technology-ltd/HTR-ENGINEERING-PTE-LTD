@@ -67,10 +67,10 @@ class ProjectService
     /**
      * Get featured projects formatted for home page.
      *
-     * @param int $limit
+     * @param int|null $limit
      * @return array
      */
-    public function getFeaturedForHome(int $limit = 3): array
+    public function getFeaturedForHome(?int $limit = null): array
     {
         return $this->getFeatured($limit)
             ->map(function($project) {

@@ -17,72 +17,74 @@
 {{-- Services List --}}
 <section class="py-16 md:py-20 bg-gray-50">
     <div class="container mx-auto px-4">
-        @forelse($services as $index => $service)
-        <div class="mb-16 last:mb-0">
-            <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
-                    {{-- Content --}}
-                    <div class="p-8 md:p-12 {{ $index % 2 === 0 ? 'lg:order-1' : 'lg:order-2' }}">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="bg-primary-100 p-3 rounded-lg">
-                                @if($service->icon)
-                                    <i class="{{ $service->icon }} text-3xl text-primary-700"></i>
-                                @else
-                                    <i class="fas fa-cog text-3xl text-primary-700"></i>
-                                @endif
-                            </div>
-                            <h2 class="text-3xl md:text-4xl font-bold text-gray-900">{{ $service->title }}</h2>
-                        </div>
-                        
-                        <p class="text-xl text-primary-700 font-semibold mb-4">{{ $service->description }}</p>
-                        
-                        @if($service->details)
-                        <p class="text-gray-600 mb-6 leading-relaxed">{{ $service->details }}</p>
-                        @endif
-                        
-                        @if($service->features && count($service->features) > 0)
-                        <h3 class="text-xl font-bold text-gray-900 mb-4">Key Features:</h3>
-                        <ul class="space-y-3 mb-8">
-                            @foreach($service->features as $feature)
-                            <li class="flex items-start gap-3">
-                                <svg class="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                                <span class="text-gray-700">{{ $feature }}</span>
-                            </li>
-                            @endforeach
-                        </ul>
-                        @endif
-                        
-                        <a href="{{ route('contact') }}" class="inline-block bg-primary-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-800 transition-colors">
-                            Request Quote
-                        </a>
-                    </div>
-                    
-                    {{-- Image --}}
-                    <div class="bg-gradient-to-br from-primary-100 to-blue-100 flex items-center justify-center p-8 {{ $index % 2 === 0 ? 'lg:order-2' : 'lg:order-1' }}">
-                        @if($service->image)
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @forelse($services as $service)
+            <a href="{{ route('service.details', $service->id) }}" class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 block">
+                {{-- Background Image with Overlay --}}
+                @if($service->image)
+                    <div class="absolute inset-0 z-0">
                         <img src="{{ asset('storage/' . $service->image) }}" 
                              alt="{{ $service->title }}" 
-                             class="rounded-lg shadow-lg w-full h-full object-cover max-h-96">
-                        @else
-                        <div class="w-full h-64 bg-gradient-to-br from-blue-100 to-primary-100 rounded-lg flex items-center justify-center">
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/50"></div>
+                    </div>
+                @else
+                    <div class="absolute inset-0 z-0 bg-gradient-to-br from-primary-700 to-primary-900"></div>
+                @endif
+
+                {{-- Content --}}
+                <div class="relative z-10 p-8 flex flex-col h-full min-h-[450px]">
+                    {{-- Icon --}}
+                    <div class="mb-6">
+                        <div class="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                             @if($service->icon)
-                                <i class="{{ $service->icon }} text-8xl text-primary-400"></i>
+                                <i class="{{ $service->icon }} text-4xl text-white"></i>
                             @else
-                                <i class="fas fa-cog text-8xl text-primary-400"></i>
+                                <i class="fas fa-cog text-4xl text-white"></i>
                             @endif
                         </div>
+                    </div>
+
+                    {{-- Title --}}
+                    <h2 class="text-3xl font-bold text-white mb-4">{{ $service->title }}</h2>
+
+                    {{-- Description --}}
+                    <p class="text-gray-200 text-base leading-relaxed mb-6 flex-grow">
+                        {{ $service->description }}
+                    </p>
+
+                    {{-- Features --}}
+                    @if($service->features && count($service->features) > 0)
+                    <div class="mb-6 space-y-2">
+                        @foreach(array_slice($service->features, 0, 3) as $feature)
+                        <div class="flex items-start gap-2">
+                            <svg class="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span class="text-gray-200 text-sm">{{ $feature }}</span>
+                        </div>
+                        @endforeach
+                        @if(count($service->features) > 3)
+                        <p class="text-white/70 text-sm ml-7">+{{ count($service->features) - 3 }} more features</p>
                         @endif
                     </div>
+                    @endif
+
+                    {{-- CTA Button --}}
+                    <div class="pt-4 border-t border-white/20">
+                        <span class="block w-full bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 text-center group-hover:bg-white group-hover:text-primary-900">
+                            <i class="fas fa-info-circle mr-2"></i>View Details
+                        </span>
+                    </div>
                 </div>
+            </a>
+            @empty
+            <div class="col-span-full text-center py-12">
+                <i class="fas fa-inbox text-6xl text-gray-300 mb-4"></i>
+                <p class="text-gray-500 text-lg">No services available at the moment.</p>
             </div>
+            @endforelse
         </div>
-        @empty
-        <div class="text-center py-12">
-            <p class="text-gray-500 text-lg">No services available at the moment.</p>
-        </div>
-        @endforelse
     </div>
 </section>
 

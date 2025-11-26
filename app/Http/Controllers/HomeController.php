@@ -33,24 +33,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Fetch active services from database
-        $services = $this->serviceService->getActiveForHome(6);
+        // Fetch all active services from database (for slider)
+        $services = $this->serviceService->getActiveForHome(null); // Get all
         
         // If no services in database, use fallback
         if (empty($services)) {
             $services = $this->getFallbackServices();
         }
 
-        // Fetch featured projects from database
-        $projects = $this->projectService->getFeaturedForHome(3);
+        // Fetch all featured projects from database (for slider)
+        $projects = $this->projectService->getFeaturedForHome(null); // Get all
         
         // Fallback if no projects
         if (empty($projects)) {
             $projects = $this->getFallbackProjects();
         }
 
-        // Fetch testimonials from database
-        $testimonials = $this->testimonialService->getActiveForHome(3);
+        // Fetch all testimonials from database (for slider)
+        $testimonials = $this->testimonialService->getActiveForHome(null); // Get all
         
         // Fallback testimonials
         if (empty($testimonials)) {

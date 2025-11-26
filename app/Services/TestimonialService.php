@@ -45,10 +45,10 @@ class TestimonialService
     /**
      * Get active testimonials formatted for home page.
      *
-     * @param int $limit
+     * @param int|null $limit
      * @return array
      */
-    public function getActiveForHome(int $limit = 3): array
+    public function getActiveForHome(?int $limit = null): array
     {
         return $this->getActive($limit)
             ->map(function($testimonial) {

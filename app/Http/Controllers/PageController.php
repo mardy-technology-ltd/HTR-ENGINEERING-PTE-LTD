@@ -54,6 +54,20 @@ class PageController extends Controller
     }
 
     /**
+     * Display service details page.
+     *
+     * @param int $id
+     * @return \Illuminate\View\View
+     */
+    public function serviceDetails(int $id)
+    {
+        $service = $this->serviceService->findById($id);
+        $relatedServices = $this->serviceService->getActive(3);
+
+        return view('service-details', compact('service', 'relatedServices'));
+    }
+
+    /**
      * Display the gallery page.
      *
      * @return \Illuminate\View\View

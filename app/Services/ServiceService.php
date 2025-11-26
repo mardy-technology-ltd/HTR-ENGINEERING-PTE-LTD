@@ -45,17 +45,19 @@ class ServiceService
     /**
      * Get active services formatted for home page.
      *
-     * @param int $limit
+     * @param int|null $limit
      * @return array
      */
-    public function getActiveForHome(int $limit = 6): array
+    public function getActiveForHome(?int $limit = null): array
     {
         return $this->getActive($limit)
             ->map(function($service) {
                 return [
+                    'id' => $service->id,
                     'title' => $service->title,
                     'description' => $service->description,
-                    'icon' => $service->icon ?? 'default'
+                    'icon' => $service->icon ?? 'default',
+                    'image' => $service->image
                 ];
             })
             ->toArray();

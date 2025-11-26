@@ -81,30 +81,21 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach($services as $service)
-            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group transform hover:-translate-y-2">
-                <div class="bg-gradient-to-br from-primary-700 to-primary-900 p-6 text-white">
-                    <div class="bg-white bg-opacity-20 w-16 h-16 rounded-lg flex items-center justify-center mb-4">
-                        @if(isset($service['icon']) && $service['icon'] && $service['icon'] != 'default')
-                            <i class="{{ $service['icon'] }} text-4xl"></i>
-                        @else
-                            <i class="fas fa-cog text-4xl"></i>
-                        @endif
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">{{ $service['title'] }}</h3>
-                </div>
-                <div class="p-6">
-                    <p class="text-gray-600 mb-4">{{ $service['description'] }}</p>
-                    <a href="{{ route('services') }}" class="text-primary-700 font-semibold hover:text-primary-900 flex items-center gap-2 group-hover:gap-3 transition-all">
-                        Learn More
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
+        <div class="relative overflow-hidden">
+            <div id="servicesSlider" class="grid gap-8 transition-all duration-500">
+                {{-- Services will be rendered by JavaScript slider --}}
             </div>
-            @endforeach
+            {{-- Navigation Arrows (shown only when items > 3) --}}
+            <button id="servicesSlider-prev" class="hidden absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white/90 hover:bg-white text-primary-900 p-3 rounded-full shadow-lg hover:shadow-xl transition-all z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            <button id="servicesSlider-next" class="hidden absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white/90 hover:bg-white text-primary-900 p-3 rounded-full shadow-lg hover:shadow-xl transition-all z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
         </div>
 
         <div class="text-center mt-12">
@@ -125,36 +116,21 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            @foreach($projects as $project)
-            <a href="{{ route('project.details', $project['id']) }}" class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
-                <div class="aspect-w-16 aspect-h-12 bg-gray-200">
-                    @if(isset($project['image']) && $project['image'])
-                    <img src="{{ asset('storage/' . $project['image']) }}" 
-                         alt="{{ $project['title'] }}" 
-                         class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%23ddd\' width=\'400\' height=\'300\'/%3E%3Ctext fill=\'%23999\' font-family=\'sans-serif\' font-size=\'18\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3E{{ $project['title'] }}%3C/text%3E%3C/svg%3E'">
-                    @else
-                    <div class="w-full h-64 bg-gradient-to-br from-blue-100 to-primary-100 flex items-center justify-center">
-                        <span class="text-4xl text-primary-400 font-bold">{{ substr($project['title'], 0, 1) }}</span>
-                    </div>
-                    @endif
-                </div>
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-6 group-hover:translate-y-0 transition-transform duration-300">
-                    <span class="inline-block bg-primary-600 px-3 py-1 rounded-full text-xs font-semibold mb-2">
-                        {{ $project['category'] }}
-                    </span>
-                    <h3 class="text-xl font-bold mb-2">{{ $project['title'] }}</h3>
-                    <p class="text-sm text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                        {{ $project['description'] }}
-                    </p>
-                    <div class="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150">
-                        <span class="text-sm font-semibold text-primary-300">View Details →</span>
-                    </div>
-                </div>
-            </a>
-            @endforeach
+        <div class="relative">
+            <div id="projectsSlider" class="grid gap-8">
+                {{-- Projects will be rendered by JavaScript slider --}}
+            </div>
+            {{-- Navigation Arrows --}}
+            <button id="projectsSlider-prev" class="hidden absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white/90 hover:bg-white text-primary-900 p-3 rounded-full shadow-lg hover:shadow-xl transition-all z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            <button id="projectsSlider-next" class="hidden absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white/90 hover:bg-white text-primary-900 p-3 rounded-full shadow-lg hover:shadow-xl transition-all z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
         </div>
 
         <div class="text-center mt-12">
@@ -175,34 +151,21 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            @foreach($testimonials as $testimonial)
-            <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
-                <div class="flex gap-1 mb-4">
-                    @foreach(range(1, $testimonial['rating']) as $star)
-                    <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                    </svg>
-                    @endforeach
-                </div>
-                <p class="text-gray-600 mb-6 italic">"{{ $testimonial['message'] }}"</p>
-                <div class="flex items-center gap-4">
-                    @if(isset($testimonial['avatar']) && $testimonial['avatar'])
-                    <img src="{{ asset('storage/' . $testimonial['avatar']) }}" 
-                         alt="{{ $testimonial['name'] }}" 
-                         class="w-12 h-12 rounded-full object-cover">
-                    @else
-                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-primary-600 flex items-center justify-center text-white font-bold text-lg">
-                        {{ substr($testimonial['name'], 0, 1) }}
-                    </div>
-                    @endif
-                    <div>
-                        <div class="font-bold text-gray-900">{{ $testimonial['name'] }}</div>
-                        <div class="text-sm text-gray-500">{{ $testimonial['company'] }}</div>
-                    </div>
-                </div>
+        <div class="relative">
+            <div id="testimonialsSlider" class="grid gap-8 max-w-6xl mx-auto">
+                {{-- Testimonials will be rendered by JavaScript slider --}}
             </div>
-            @endforeach
+            {{-- Navigation Arrows --}}
+            <button id="testimonialsSlider-prev" class="hidden absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white hover:bg-gray-50 text-gray-900 p-3 rounded-full shadow-lg hover:shadow-xl transition-all z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            <button id="testimonialsSlider-next" class="hidden absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white hover:bg-gray-50 text-gray-900 p-3 rounded-full shadow-lg hover:shadow-xl transition-all z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </button>
         </div>
     </div>
 </section>
@@ -227,4 +190,187 @@
         </div>
     </div>
 </section>
+
+{{-- Auto Slider JavaScript --}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Services Slider
+    const servicesData = @json($services);
+    initSlider('servicesSlider', servicesData, 'service');
+
+    // Projects Slider
+    const projectsData = @json($projects);
+    initSlider('projectsSlider', projectsData, 'project');
+
+    // Testimonials Slider
+    const testimonialsData = @json($testimonials);
+    initSlider('testimonialsSlider', testimonialsData, 'testimonial');
+
+    function initSlider(containerId, items, type) {
+        const container = document.getElementById(containerId);
+        if (!container || !items || items.length === 0) return;
+
+        let currentIndex = 0;
+        // Show only available items (max 3)
+        const itemsPerPage = Math.min(3, items.length);
+
+        // Set grid layout based on number of items to display
+        if (itemsPerPage === 1) {
+            container.className = 'grid grid-cols-1 gap-8 transition-all duration-500 max-w-md mx-auto';
+        } else if (itemsPerPage === 2) {
+            container.className = 'grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-500 max-w-4xl mx-auto';
+        } else {
+            container.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-500';
+        }
+
+        function renderItems(startIndex) {
+            // Wrap around if needed, but only if we have more than itemsPerPage
+            const displayItems = [];
+            if (items.length <= itemsPerPage) {
+                // Show all items if total is less than or equal to itemsPerPage
+                displayItems.push(...items);
+            } else {
+                // Circular sliding for more items
+                for (let i = 0; i < itemsPerPage; i++) {
+                    const index = (startIndex + i) % items.length;
+                    displayItems.push(items[index]);
+                }
+            }
+            
+            if (type === 'service') {
+                container.innerHTML = displayItems.map(service => `
+                    <a href="/service/${service.id}" class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 block">
+                        ${service.image ? `
+                            <div class="absolute inset-0 z-0">
+                                <img src="/storage/${service.image}" 
+                                     alt="${escapeHtml(service.title)}" 
+                                     class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/40"></div>
+                            </div>
+                        ` : `
+                            <div class="absolute inset-0 z-0 bg-gradient-to-br from-primary-700 to-primary-900"></div>
+                        `}
+                        <div class="relative z-10 p-6 flex flex-col h-full min-h-[320px]">
+                            <div class="mb-4">
+                                <div class="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                    <i class="${service.icon && service.icon !== 'default' ? service.icon : 'fas fa-cog'} text-4xl text-white"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow">
+                                <h3 class="text-2xl font-bold text-white mb-3">${escapeHtml(service.title)}</h3>
+                                <p class="text-gray-200 text-sm leading-relaxed mb-4">${escapeHtml(service.description)}</p>
+                            </div>
+                            <div class="pt-4 border-t border-white/20">
+                                <span class="text-white font-semibold group-hover:text-primary-300 transition-colors inline-flex items-center">
+                                    Learn More
+                                    <svg class="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                `).join('');
+            } else if (type === 'project') {
+                container.innerHTML = displayItems.map(project => `
+                    <a href="/project/${project.id}" class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
+                        <div class="aspect-w-16 aspect-h-12 bg-gray-200">
+                            ${project.image ? `
+                                <img src="/storage/${project.image}" 
+                                     alt="${escapeHtml(project.title)}" 
+                                     class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                            ` : `
+                                <div class="w-full h-64 bg-gradient-to-br from-blue-100 to-primary-100 flex items-center justify-center">
+                                    <span class="text-4xl text-primary-400 font-bold">${escapeHtml(project.title.charAt(0))}</span>
+                                </div>
+                            `}
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-6 group-hover:translate-y-0 transition-transform duration-300">
+                            <span class="inline-block bg-primary-600 px-3 py-1 rounded-full text-xs font-semibold mb-2">
+                                ${escapeHtml(project.category)}
+                            </span>
+                            <h3 class="text-xl font-bold mb-2">${escapeHtml(project.title)}</h3>
+                            <p class="text-sm text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                                ${escapeHtml(project.description)}
+                            </p>
+                            <div class="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150">
+                                <span class="text-sm font-semibold text-primary-300">View Details →</span>
+                            </div>
+                        </div>
+                    </a>
+                `).join('');
+            } else if (type === 'testimonial') {
+                container.innerHTML = displayItems.map(testimonial => `
+                    <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
+                        <div class="flex gap-1 mb-4">
+                            ${Array(parseInt(testimonial.rating)).fill().map(() => `
+                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                                </svg>
+                            `).join('')}
+                        </div>
+                        <p class="text-gray-600 mb-6 italic">"${escapeHtml(testimonial.message)}"</p>
+                        <div class="flex items-center gap-4">
+                            ${testimonial.avatar ? `
+                                <img src="/storage/${testimonial.avatar}" 
+                                     alt="${escapeHtml(testimonial.name)}" 
+                                     class="w-12 h-12 rounded-full object-cover">
+                            ` : `
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-primary-600 flex items-center justify-center text-white font-bold text-lg">
+                                    ${escapeHtml(testimonial.name.charAt(0))}
+                                </div>
+                            `}
+                            <div>
+                                <div class="font-bold text-gray-900">${escapeHtml(testimonial.name)}</div>
+                                <div class="text-sm text-gray-500">${escapeHtml(testimonial.company)}</div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function nextSlide() {
+            // Move one item at a time for smooth sliding
+            currentIndex = (currentIndex + 1) % items.length;
+            renderItems(currentIndex);
+        }
+
+        function prevSlide() {
+            // Move backward one item at a time
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            renderItems(currentIndex);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Initial render
+        renderItems(currentIndex);
+
+        // Show/hide navigation arrows and setup auto-slide
+        if (items.length > itemsPerPage) {
+            // Show navigation arrows
+            const prevBtn = document.getElementById(`${containerId}-prev`);
+            const nextBtn = document.getElementById(`${containerId}-next`);
+            
+            if (prevBtn && nextBtn) {
+                prevBtn.classList.remove('hidden');
+                nextBtn.classList.remove('hidden');
+                
+                // Add click event listeners
+                prevBtn.addEventListener('click', prevSlide);
+                nextBtn.addEventListener('click', nextSlide);
+            }
+            
+            // Auto-slide every 5 seconds (one item at a time)
+            setInterval(nextSlide, 5000);
+        }
+    }
+});
+</script>
 @endsection

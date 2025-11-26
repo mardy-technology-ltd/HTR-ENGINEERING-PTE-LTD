@@ -11,7 +11,6 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\Admin\TermsConditionController;
 use App\Http\Controllers\Admin\PolicyController as AdminPolicyController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use Illuminate\Support\Facades\Route;
@@ -20,13 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/services', [PageController::class, 'services'])->name('services');
+Route::get('/service/{id}', [PageController::class, 'serviceDetails'])->name('service.details');
 Route::get('/gallery', [PageController::class, 'gallery'])->name('gallery');
 Route::get('/project/{id}', [PageController::class, 'projectDetails'])->name('project.details');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [PageController::class, 'submitContact'])
     ->middleware(['throttle:contact', 'throttle.contact'])
     ->name('contact.submit');
-Route::get('/terms-conditions', [PageController::class, 'termsConditions'])->name('terms-conditions');
 
 // Policy Routes
 Route::get('/privacy-policy', [PolicyController::class, 'privacyPolicy'])->name('privacy-policy');
@@ -77,11 +76,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     Route::put('profile/password', [AdminProfileController::class, 'updatePassword'])->name('profile.password');
     
     // Policies (Privacy Policy & Terms of Service)
+    // Policies (Privacy Policy & Terms of Service)
     Route::get('policies', [AdminPolicyController::class, 'index'])->name('policies.index');
     Route::get('policies/{policy}/edit', [AdminPolicyController::class, 'edit'])->name('policies.edit');
     Route::put('policies/{policy}', [AdminPolicyController::class, 'update'])->name('policies.update');
-    
-    // Terms & Conditions
-    Route::get('terms-conditions', [TermsConditionController::class, 'edit'])->name('terms-conditions.edit');
-    Route::put('terms-conditions', [TermsConditionController::class, 'update'])->name('terms-conditions.update');
 });
