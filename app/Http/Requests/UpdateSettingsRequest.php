@@ -30,6 +30,9 @@ class UpdateSettingsRequest extends FormRequest
             'facebook_url' => ['nullable', 'url', 'regex:/^https?:\/\/(www\.)?facebook\.com/', 'max:255'],
             'instagram_url' => ['nullable', 'url', 'regex:/^https?:\/\/(www\.)?instagram\.com/', 'max:255'],
             'whatsapp_url' => ['nullable', 'url', 'regex:/^https?:\/\/(wa\.me|whatsapp\.com)/', 'max:255'],
+            'footer_tagline' => ['nullable', 'string', 'max:500'],
+            'footer_services' => ['nullable', 'array', 'max:5'],
+            'footer_services.*' => ['required', 'string', 'max:100'],
         ];
     }
 
@@ -49,6 +52,10 @@ class UpdateSettingsRequest extends FormRequest
             'facebook_url.regex' => 'Please enter a valid Facebook URL.',
             'instagram_url.regex' => 'Please enter a valid Instagram URL.',
             'whatsapp_url.regex' => 'Please enter a valid WhatsApp link.',
+            'footer_tagline.max' => 'Footer tagline cannot exceed 500 characters.',
+            'footer_services.max' => 'You can add maximum 5 footer services.',
+            'footer_services.*.required' => 'Each service name is required.',
+            'footer_services.*.max' => 'Service name cannot exceed 100 characters.',
         ];
     }
 }

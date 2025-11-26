@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\PolicyController as AdminPolicyController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
+use App\Http\Controllers\Admin\AboutContentController;
 use Illuminate\Support\Facades\Route;
 
 // Frontend Routes
@@ -60,6 +61,12 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     
     // Testimonials
     Route::resource('testimonials', TestimonialController::class)->except(['show']);
+    
+    // About Content
+    Route::get('about-content', [AboutContentController::class, 'index'])->name('about.index');
+    Route::get('about-content/{aboutContent}/edit', [AboutContentController::class, 'edit'])->name('about.edit');
+    Route::put('about-content/{aboutContent}', [AboutContentController::class, 'update'])->name('about.update');
+    Route::post('about-content/seed', [AboutContentController::class, 'seed'])->name('about.seed');
     
     // Contacts
     Route::get('contacts', [ContactController::class, 'index'])->name('contacts.index');

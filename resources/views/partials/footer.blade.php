@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <p class="text-sm leading-relaxed mb-4">
-                    Your trusted partner for professional roller shutters, security grilles, automatic gates, and construction services in Singapore.
+                    {{ App\Models\Setting::get('footer_tagline', 'Your trusted partner for professional roller shutters, security grilles, automatic gates, and construction services in Singapore.') }}
                 </p>
                 <div class="flex space-x-3">
                     @if(App\Models\Setting::get('facebook_url'))
@@ -105,42 +105,33 @@
             <div>
                 <h3 class="text-white font-bold text-lg mb-4">Our Services</h3>
                 <ul class="space-y-2 text-sm">
-                    <li class="flex items-start">
-                        <svg class="w-4 h-4 mr-2 mt-0.5 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                        Roller Shutters
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-4 h-4 mr-2 mt-0.5 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                        Security Grilles
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-4 h-4 mr-2 mt-0.5 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                        Automatic Gates
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-4 h-4 mr-2 mt-0.5 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                        Automatic Doors
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-4 h-4 mr-2 mt-0.5 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                        Metal Fabrication
-                    </li>
-                    <li class="flex items-start">
-                        <svg class="w-4 h-4 mr-2 mt-0.5 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                        Maintenance Services
-                    </li>
+                    @php
+                        $footerServices = App\Models\Setting::get('footer_services');
+                        $services = $footerServices ? json_decode($footerServices, true) : [
+                            'Roller Shutters',
+                            'Security Grilles',
+                            'Automatic Gates',
+                            'Automatic Doors',
+                            'Metal Fabrication'
+                        ];
+                        $services = is_array($services) ? array_slice($services, 0, 5) : [];
+                    @endphp
+                    
+                    @forelse($services as $service)
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 mr-2 mt-0.5 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            {{ $service }}
+                        </li>
+                    @empty
+                        <li class="flex items-start">
+                            <svg class="w-4 h-4 mr-2 mt-0.5 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Roller Shutters
+                        </li>
+                    @endforelse
                 </ul>
             </div>
 

@@ -9,58 +9,65 @@
     <div class="container mx-auto px-4">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
         <p class="text-xl text-primary-100 max-w-3xl">
-            Your trusted partner for quality construction and security solutions in Singapore since 2009.
+            {{ $hero->subtitle ?? 'Your trusted partner for quality construction and security solutions in Singapore since 2009.' }}
         </p>
     </div>
 </section>
 
 {{-- Company Overview --}}
+@if($hero && $hero->is_active)
 <section class="py-16 md:py-20 bg-white">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                    Who We Are
+                    {{ $hero->title ?? 'Who We Are' }}
                 </h2>
                 <div class="prose prose-lg text-gray-600">
                     <p class="mb-4">
-                        HTR ENGINEERING PTE LTD is a leading provider of roller shutters, security grilles, automatic gates, and comprehensive construction services in Singapore. With over 15 years of industry experience, we have established ourselves as a trusted name in the market.
-                    </p>
-                    <p class="mb-4">
-                        Our company was founded with a simple mission: to provide high-quality, reliable, and cost-effective security and construction solutions to businesses and homeowners across Singapore. Today, we serve a diverse clientele ranging from small residential properties to large industrial complexes.
-                    </p>
-                    <p class="mb-4">
-                        We pride ourselves on our commitment to excellence, attention to detail, and customer satisfaction. Every project we undertake is executed with the highest standards of workmanship and professionalism.
+                        {{ $hero->content ?? 'HTR ENGINEERING PTE LTD is a leading provider of roller shutters, security grilles, automatic gates, and comprehensive construction services in Singapore. With over 15 years of industry experience, we have established ourselves as a trusted name in the market.' }}
                     </p>
                 </div>
             </div>
             <div class="relative">
                 <div class="bg-primary-100 rounded-2xl p-8 shadow-xl">
-                    <img src="{{ asset('storage/about-office.jpg') }}" 
-                         alt="HTR ENGINEERING Office" 
-                         class="rounded-lg shadow-lg w-full"
-                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%23e5e7eb\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%239ca3af\' font-family=\'sans-serif\' font-size=\'24\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EOur Company%3C/text%3E%3C/svg%3E'">
+                    @if($hero && $hero->image)
+                        <img src="{{ asset('storage/' . $hero->image) }}" 
+                             alt="{{ $hero->title }}" 
+                             class="rounded-lg shadow-lg w-full">
+                    @else
+                        <img src="{{ asset('storage/about-office.jpg') }}" 
+                             alt="HTR ENGINEERING Office" 
+                             class="rounded-lg shadow-lg w-full"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%23e5e7eb\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%239ca3af\' font-family=\'sans-serif\' font-size=\'24\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EOur Company%3C/text%3E%3C/svg%3E'">
+                    @endif
                 </div>
             </div>
         </div>
     </div>
 </section>
+@endif
 
 {{-- Mission & Vision --}}
+@if(($mission && $mission->is_active) || ($vision && $vision->is_active))
 <section class="py-16 md:py-20 bg-gray-50">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            @if($mission && $mission->is_active)
             <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
                 <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                     <svg class="w-8 h-8 text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ $mission->title ?? 'Our Mission' }}</h3>
                 <p class="text-gray-600">
-                    To deliver superior quality roller shutters, security solutions, and construction services that exceed our clients' expectations. We are committed to providing innovative, reliable, and cost-effective solutions while maintaining the highest standards of safety and professionalism.
+                    {{ $mission->content ?? 'To deliver superior quality roller shutters, security solutions, and construction services that exceed our clients\' expectations. We are committed to providing innovative, reliable, and cost-effective solutions while maintaining the highest standards of safety and professionalism.' }}
                 </p>
             </div>
+            @endif
+            
+            @if($vision && $vision->is_active)
             <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
                 <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                     <svg class="w-8 h-8 text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,14 +75,16 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">Our Vision</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ $vision->title ?? 'Our Vision' }}</h3>
                 <p class="text-gray-600">
-                    To be Singapore's most trusted and preferred provider of security and construction solutions. We aspire to set industry benchmarks through continuous innovation, exceptional service quality, and sustainable business practices.
+                    {{ $vision->content ?? 'To be Singapore\'s most trusted and preferred provider of security and construction solutions. We aspire to set industry benchmarks through continuous innovation, exceptional service quality, and sustainable business practices.' }}
                 </p>
             </div>
+            @endif
         </div>
     </div>
 </section>
+@endif
 
 {{-- Why Choose Us --}}
 <section class="py-16 md:py-20 bg-white">

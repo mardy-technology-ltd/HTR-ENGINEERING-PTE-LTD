@@ -65,6 +65,11 @@ class SettingService
     public function updateMany(array $settings): void
     {
         foreach ($settings as $key => $value) {
+            // Handle footer_services array - convert to JSON
+            if ($key === 'footer_services' && is_array($value)) {
+                $value = json_encode(array_values($value));
+            }
+            
             $this->set($key, $value);
         }
         

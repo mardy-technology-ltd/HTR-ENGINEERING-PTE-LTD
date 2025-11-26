@@ -111,6 +111,17 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('admin.about.index') }}" 
+                           class="block px-4 py-3 rounded-lg transition-all duration-200 {{ request()->routeIs('admin.about.*') ? 'bg-white text-blue-900 shadow-md' : 'hover:bg-blue-700 text-white' }}">
+                            <span class="flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                About Content
+                            </span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="{{ route('admin.contacts.index') }}" 
                            class="block px-4 py-3 rounded-lg transition-all duration-200 {{ request()->routeIs('admin.contacts.*') ? 'bg-white text-blue-900 shadow-md' : 'hover:bg-blue-700 text-white' }}">
                             <span class="flex items-center">

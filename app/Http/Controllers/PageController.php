@@ -6,6 +6,7 @@ use App\Models\Contact;
 use App\Models\Service;
 use App\Models\Project;
 use App\Models\GalleryImage;
+use App\Models\AboutContent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactReceived;
@@ -39,7 +40,11 @@ class PageController extends Controller
      */
     public function about()
     {
-        return view('about');
+        $hero = AboutContent::getBySection('hero');
+        $mission = AboutContent::getBySection('mission');
+        $vision = AboutContent::getBySection('vision');
+
+        return view('about', compact('hero', 'mission', 'vision'));
     }
 
     /**

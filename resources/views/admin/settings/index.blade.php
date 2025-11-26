@@ -219,6 +219,89 @@
                 </div>
             </div>
 
+            <!-- Footer Settings Section -->
+            <div class="mb-6">
+                <h2 class="text-lg font-bold text-gray-800 mb-4 pb-2 border-b">
+                    <i class="fas fa-shoe-prints mr-2 text-gray-600"></i>
+                    Footer Settings
+                </h2>
+                
+                <div class="mb-6">
+                    <label for="footer_tagline" class="block text-gray-700 font-semibold mb-2">
+                        Company Tagline
+                    </label>
+                    <textarea 
+                        name="footer_tagline" 
+                        id="footer_tagline" 
+                        rows="3"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200 @error('footer_tagline') border-red-500 @enderror"
+                        placeholder="Your trusted partner for professional roller shutter solutions...">{{ old('footer_tagline', $settings['footer_tagline'] ?? '') }}</textarea>
+                    <p class="text-xs text-gray-500 mt-1">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        This tagline will be displayed in the footer (max 500 characters)
+                    </p>
+                    @error('footer_tagline')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 font-semibold mb-2">
+                        Footer Services (Maximum 5)
+                    </label>
+                    
+                    <div id="footer-services-container" class="space-y-3">
+                        @php
+                            $footerServices = old('footer_services') 
+                                ? old('footer_services') 
+                                : (isset($settings['footer_services']) ? json_decode($settings['footer_services'], true) : [
+                                    'Roller Shutter Installation',
+                                    'Repair & Maintenance',
+                                    'Emergency Services',
+                                    'Custom Solutions',
+                                    'Consultation'
+                                ]);
+                            $footerServices = is_array($footerServices) ? $footerServices : [];
+                        @endphp
+                        
+                        @foreach($footerServices as $index => $service)
+                        <div class="footer-service-item flex gap-2">
+                            <input type="text" 
+                                   name="footer_services[]" 
+                                   value="{{ $service }}"
+                                   class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                   placeholder="Enter service name"
+                                   required>
+                            <button type="button" 
+                                    onclick="removeFooterService(this)" 
+                                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition duration-200">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        @endforeach
+                    </div>
+
+                    <button type="button" 
+                            id="add-footer-service-btn"
+                            onclick="addFooterService()" 
+                            class="mt-3 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-semibold transition duration-200">
+                        <i class="fas fa-plus mr-2"></i>
+                        Add Service
+                    </button>
+                    
+                    <p class="text-xs text-gray-500 mt-2">
+                        <i class="fas fa-info-circle mr-1"></i>
+                        Add up to 5 service items for the footer "Our Services" section
+                    </p>
+                    @error('footer_services')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                    @error('footer_services.*')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
             <div class="flex gap-4 pt-4 border-t">
                 <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition duration-200 shadow-md hover:shadow-lg">
                     <i class="fas fa-save mr-2"></i>
@@ -245,4 +328,69 @@
         </div>
     </div>
 </div>
+
+<script>
+function addFooterService() {
+    const container = document.getElementById('footer-services-container');
+    const currentCount = container.querySelectorAll('.footer-service-item').length;
+    
+    if (currentCount >= 5) {
+        alert('Maximum 5 services allowed');
+        return;
+    }
+    
+    const newItem = document.createElement('div');
+    newItem.className = 'footer-service-item flex gap-2';
+    newItem.innerHTML = `
+        <input type="text" 
+               name="footer_services[]" 
+               value=""
+               class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+               placeholder="Enter service name"
+               required>
+        <button type="button" 
+                onclick="removeFooterService(this)" 
+                class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition duration-200">
+            <i class="fas fa-trash"></i>
+        </button>
+    `;
+    
+    container.appendChild(newItem);
+    updateAddButtonState();
+}
+
+function removeFooterService(button) {
+    const container = document.getElementById('footer-services-container');
+    const item = button.closest('.footer-service-item');
+    
+    if (container.querySelectorAll('.footer-service-item').length <= 1) {
+        alert('At least one service must remain');
+        return;
+    }
+    
+    item.remove();
+    updateAddButtonState();
+}
+
+function updateAddButtonState() {
+    const container = document.getElementById('footer-services-container');
+    const addBtn = document.getElementById('add-footer-service-btn');
+    const currentCount = container.querySelectorAll('.footer-service-item').length;
+    
+    if (currentCount >= 5) {
+        addBtn.disabled = true;
+        addBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        addBtn.classList.remove('hover:bg-green-600');
+    } else {
+        addBtn.disabled = false;
+        addBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        addBtn.classList.add('hover:bg-green-600');
+    }
+}
+
+// Initialize button state on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updateAddButtonState();
+});
+</script>
 @endsection
