@@ -194,325 +194,125 @@
 {{-- Auto Slider JavaScript --}}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Simple helper functions
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text || '';
+        return div.innerHTML;
+    }
+
+    function imageUrl(path) {
+        if (!path) return '';
+        return '{{ url('') }}/uploads/' + path;
+    }
+
     // Services Slider
     const servicesData = @json($services);
-    initSlider('servicesSlider', servicesData, 'service');
+    const servicesContainer = document.getElementById('servicesSlider');
+    
+    if (servicesContainer && servicesData && servicesData.length > 0) {
+        servicesContainer.innerHTML = servicesData.slice(0, 3).map(service => `
+            <div class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                ${service.image ? `
+                    <div class="absolute inset-0 z-0">
+                        <img src="${imageUrl(service.image)}" 
+                             alt="${escapeHtml(service.title)}" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/40"></div>
+                    </div>
+                ` : `
+                    <div class="absolute inset-0 z-0 bg-gradient-to-br from-blue-700 to-blue-900"></div>
+                `}
+                <div class="relative z-10 p-6 flex flex-col h-full min-h-[320px]">
+                    <div class="mb-4">
+                        <div class="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="${service.icon || 'fas fa-cog'} text-4xl text-white"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-2xl font-bold text-white mb-3">${escapeHtml(service.title)}</h3>
+                        <p class="text-gray-200 text-sm leading-relaxed mb-4">${escapeHtml(service.description)}</p>
+                    </div>
+                    <div class="pt-4 border-t border-white/20">
+                        <span class="text-white font-semibold group-hover:text-blue-300 transition-colors inline-flex items-center">
+                            Learn More
+                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+        servicesContainer.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-500';
+    }
 
-    // Projects Slider
+    // Projects Slider  
     const projectsData = @json($projects);
-    initSlider('projectsSlider', projectsData, 'project');
+    const projectsContainer = document.getElementById('projectsSlider');
+    
+    if (projectsContainer && projectsData && projectsData.length > 0) {
+        projectsContainer.innerHTML = projectsData.slice(0, 3).map(project => `
+            <div class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
+                <div class="aspect-w-16 aspect-h-12 bg-gray-200">
+                    ${project.image ? `
+                        <img src="${imageUrl(project.image)}" 
+                             alt="${escapeHtml(project.title)}" 
+                             class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                    ` : `
+                        <div class="w-full h-64 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                            <span class="text-4xl text-blue-400 font-bold">${escapeHtml(project.title.charAt(0))}</span>
+                        </div>
+                    `}
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-6 group-hover:translate-y-0 transition-transform duration-300">
+                    <span class="inline-block bg-blue-600 px-3 py-1 rounded-full text-xs font-semibold mb-2">
+                        ${escapeHtml(project.category)}
+                    </span>
+                    <h3 class="text-xl font-bold mb-2">${escapeHtml(project.title)}</h3>
+                    <p class="text-sm text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                        ${escapeHtml(project.description)}
+                    </p>
+                </div>
+            </div>
+        `).join('');
+        projectsContainer.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8';
+    }
 
     // Testimonials Slider
     const testimonialsData = @json($testimonials);
-    initSlider('testimonialsSlider', testimonialsData, 'testimonial');
-
-    function initSlider(containerId, items, type) {
-        const container = document.getElementById(containerId);
-        if (!container || !items || items.length === 0) return;
-
-        let currentIndex = 0;
-        const itemsPerPage = Math.min(3, items.length);
-
-        // Set responsive layout
-        function setContainerLayout() {
-            const isMobile = window.innerWidth < 768;
-            
-            if (isMobile) {
-                container.className = 'flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4';
-            } else if (itemsPerPage === 1) {
-                container.className = 'grid grid-cols-1 gap-8 transition-all duration-500 max-w-md mx-auto';
-            } else if (itemsPerPage === 2) {
-                container.className = 'grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-500 max-w-4xl mx-auto';
-            } else {
-                container.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-500';
-            }
-        }
-        
-        setContainerLayout();
-        
-        // Add mobile-specific styles
-        if (!document.querySelector('#mobile-slider-style')) {
-            const style = document.createElement('style');
-            style.id = 'mobile-slider-style';
-            style.textContent = `
-                .scrollbar-hide {
-                    -ms-overflow-style: none;
-                    scrollbar-width: none;
-                }
-                .scrollbar-hide::-webkit-scrollbar {
-                    display: none;
-                }
-                @media (max-width: 767px) {
-                    .slider-item {
-                        flex: 0 0 280px;
-                        scroll-snap-align: start;
-                        scroll-snap-stop: always;
-                    }
-                    .slider-container {
-                        padding-left: 1rem;
-                        padding-right: 1rem;
-                    }
-                }
-                @media (min-width: 768px) {
-                    .slider-item {
-                        flex: none;
-                    }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-
-        function renderItems(startIndex) {
-            const isMobile = window.innerWidth < 768;
-            let displayItems = [];
-            
-            if (isMobile) {
-                // Mobile: show all items
-                displayItems = [...items];
-            } else {
-                // Desktop: show limited items with pagination
-                if (items.length <= itemsPerPage) {
-                    displayItems = [...items];
-                } else {
-                    for (let i = 0; i < itemsPerPage; i++) {
-                        const index = (startIndex + i) % items.length;
-                        displayItems.push(items[index]);
-                    }
-                }
-            }
-            
-            if (type === 'service') {
-                container.innerHTML = displayItems.map(service => `
-                    <a href="/service/${service.id}" class="slider-item group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 block">
-                        ${service.image ? `
-                            <div class="absolute inset-0 z-0">
-                                <img src="${imageUrl(service.image)}" 
-                                     alt="${escapeHtml(service.title)}" 
-                                     class="w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/40"></div>
-                            </div>
-                        ` : `
-                            <div class="absolute inset-0 z-0 bg-gradient-to-br from-primary-700 to-primary-900"></div>
-                        `}
-                        <div class="relative z-10 p-6 flex flex-col h-full min-h-[320px]">
-                            <div class="mb-4">
-                                <div class="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                    <i class="${service.icon && service.icon !== 'default' ? service.icon : 'fas fa-cog'} text-4xl text-white"></i>
-                                </div>
-                            </div>
-                            <div class="flex-grow">
-                                <h3 class="text-2xl font-bold text-white mb-3">${escapeHtml(service.title)}</h3>
-                                <p class="text-gray-200 text-sm leading-relaxed mb-4">${escapeHtml(service.description)}</p>
-                            </div>
-                            <div class="pt-4 border-t border-white/20">
-                                <span class="text-white font-semibold group-hover:text-primary-300 transition-colors inline-flex items-center">
-                                    Learn More
-                                    <svg class="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                                    </svg>
-                                </span>
-                            </div>
+    const testimonialsContainer = document.getElementById('testimonialsSlider');
+    
+    if (testimonialsContainer && testimonialsData && testimonialsData.length > 0) {
+        testimonialsContainer.innerHTML = testimonialsData.slice(0, 3).map(testimonial => `
+            <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
+                <div class="flex gap-1 mb-4">
+                    ${Array(parseInt(testimonial.rating || 5)).fill().map(() => `
+                        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                        </svg>
+                    `).join('')}
+                </div>
+                <p class="text-gray-600 mb-6 italic">"${escapeHtml(testimonial.message)}"</p>
+                <div class="flex items-center gap-4">
+                    ${testimonial.avatar ? `
+                        <img src="${imageUrl(testimonial.avatar)}" 
+                             alt="${escapeHtml(testimonial.name)}" 
+                             class="w-12 h-12 rounded-full object-cover">
+                    ` : `
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold text-lg">
+                            ${escapeHtml(testimonial.name.charAt(0))}
                         </div>
-                    </a>
-                `).join('');
-            } else if (type === 'project') {
-                container.innerHTML = displayItems.map(project => `
-                    <a href="/project/${project.id}" class="slider-item group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
-                        <div class="aspect-w-16 aspect-h-12 bg-gray-200">
-                            ${project.image ? `
-                                <img src="${imageUrl(project.image)}" 
-                                     alt="${escapeHtml(project.title)}" 
-                                     class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
-                            ` : `
-                                <div class="w-full h-64 bg-gradient-to-br from-blue-100 to-primary-100 flex items-center justify-center">
-                                    <span class="text-4xl text-primary-400 font-bold">${escapeHtml(project.title.charAt(0))}</span>
-                                </div>
-                            `}
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-6 group-hover:translate-y-0 transition-transform duration-300">
-                            <span class="inline-block bg-primary-600 px-3 py-1 rounded-full text-xs font-semibold mb-2">
-                                ${escapeHtml(project.category)}
-                            </span>
-                            <h3 class="text-xl font-bold mb-2">${escapeHtml(project.title)}</h3>
-                            <p class="text-sm text-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                                ${escapeHtml(project.description)}
-                            </p>
-                            <div class="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150">
-                                <span class="text-sm font-semibold text-primary-300">View Details →</span>
-                            </div>
-                        </div>
-                    </a>
-                `).join('');
-            } else if (type === 'testimonial') {
-                container.innerHTML = displayItems.map(testimonial => `
-                    <div class="slider-item bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
-                        <div class="flex gap-1 mb-4">
-                            ${Array(parseInt(testimonial.rating)).fill().map(() => `
-                                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                                </svg>
-                            `).join('')}
-                        </div>
-                        <p class="text-gray-600 mb-6 italic">"${escapeHtml(testimonial.message)}"</p>
-                        <div class="flex items-center gap-4">
-                            ${testimonial.avatar ? `
-                                <img src="${imageUrl(testimonial.avatar)}" 
-                                     alt="${escapeHtml(testimonial.name)}" 
-                                     class="w-12 h-12 rounded-full object-cover">
-                            ` : `
-                                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-primary-600 flex items-center justify-center text-white font-bold text-lg">
-                                    ${escapeHtml(testimonial.name.charAt(0))}
-                                </div>
-                            `}
-                            <div>
-                                <div class="font-bold text-gray-900">${escapeHtml(testimonial.name)}</div>
-                                <div class="text-sm text-gray-500">${escapeHtml(testimonial.company)}</div>
-                            </div>
-                        </div>
+                    `}
+                    <div>
+                        <div class="font-bold text-gray-900">${escapeHtml(testimonial.name)}</div>
+                        <div class="text-sm text-gray-500">${escapeHtml(testimonial.company)}</div>
                     </div>
-                `).join('');
-            }
-            
-            // Enable mobile auto-scroll for all sliders
-            const isMobile = window.innerWidth < 768;
-            if (isMobile && items.length > 1) {
-                setupMobileAutoScroll(container, containerId);
-            }
-        }
-
-        function nextSlide() {
-            // Move one item at a time for smooth sliding
-            currentIndex = (currentIndex + 1) % items.length;
-            renderItems(currentIndex);
-        }
-
-        function prevSlide() {
-            // Move backward one item at a time
-            currentIndex = (currentIndex - 1 + items.length) % items.length;
-            renderItems(currentIndex);
-        }
-
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-        
-        // Image URL helper function for JavaScript
-        function imageUrl(path) {
-            if (!path) return '';
-            return '{{ url('') }}/uploads/' + path;
-        }
-
-        // Setup mobile auto-scroll functionality
-        function setupMobileAutoScroll(container, containerId) {
-            let autoScrollInterval;
-            let isUserScrolling = false;
-            let scrollTimeout;
-            
-            const cardWidth = 280; // Width of each card plus gap
-            const totalWidth = container.scrollWidth;
-            const visibleWidth = container.clientWidth;
-            
-            // Start auto-scroll
-            function startAutoScroll() {
-                autoScrollInterval = setInterval(() => {
-                    if (!isUserScrolling) {
-                        const currentScroll = container.scrollLeft;
-                        const maxScroll = totalWidth - visibleWidth;
-                        
-                        if (currentScroll >= maxScroll) {
-                            // Reset to beginning
-                            container.scrollTo({ left: 0, behavior: 'smooth' });
-                        } else {
-                            // Scroll to next card
-                            container.scrollBy({ left: cardWidth + 16, behavior: 'smooth' }); // 16px for gap
-                        }
-                    }
-                }, 4000); // Auto-scroll every 4 seconds
-            }
-            
-            // Stop auto-scroll
-            function stopAutoScroll() {
-                if (autoScrollInterval) {
-                    clearInterval(autoScrollInterval);
-                    autoScrollInterval = null;
-                }
-            }
-            
-            // Detect user scrolling
-            container.addEventListener('scroll', () => {
-                isUserScrolling = true;
-                stopAutoScroll();
-                
-                // Clear existing timeout
-                if (scrollTimeout) {
-                    clearTimeout(scrollTimeout);
-                }
-                
-                // Resume auto-scroll after user stops scrolling for 3 seconds
-                scrollTimeout = setTimeout(() => {
-                    isUserScrolling = false;
-                    startAutoScroll();
-                }, 3000);
-            });
-            
-            // Handle touch events for better mobile experience
-            let touchStartX = 0;
-            
-            container.addEventListener('touchstart', (e) => {
-                touchStartX = e.touches[0].clientX;
-                isUserScrolling = true;
-                stopAutoScroll();
-            });
-            
-            container.addEventListener('touchend', () => {
-                // Resume auto-scroll after touch ends with a delay
-                setTimeout(() => {
-                    if (!isUserScrolling) {
-                        startAutoScroll();
-                    }
-                }, 2000);
-            });
-            
-            // Start initial auto-scroll
-            startAutoScroll();
-        }
-
-        // Navigation functions
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % items.length;
-            renderItems(currentIndex);
-        }
-
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + items.length) % items.length;
-            renderItems(currentIndex);
-        }
-
-        // Initial render
-        renderItems(currentIndex);
-
-        // Show/hide navigation arrows and setup auto-slide
-        const isMobile = window.innerWidth < 768;
-        if (items.length > itemsPerPage && !isMobile) {
-            // Show navigation arrows only on desktop
-            const prevBtn = document.getElementById(`${containerId}-prev`);
-            const nextBtn = document.getElementById(`${containerId}-next`);
-            
-            if (prevBtn && nextBtn) {
-                prevBtn.classList.remove('hidden');
-                nextBtn.classList.remove('hidden');
-                
-                // Add click event listeners
-                prevBtn.addEventListener('click', prevSlide);
-                nextBtn.addEventListener('click', nextSlide);
-            }
-            
-            // Auto-slide every 5 seconds (one item at a time)
-            setInterval(nextSlide, 5000);
-        }
+                </div>
+            </div>
+        `).join('');
+        testimonialsContainer.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto';
     }
 });
 </script>
