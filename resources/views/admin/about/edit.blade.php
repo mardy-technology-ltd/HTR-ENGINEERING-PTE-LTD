@@ -68,7 +68,7 @@
                             <label for="image" class="form-label">Company Image</label>
                             @if($aboutContent->image)
                                 <div class="mb-2">
-                                    <img src="{{ asset('storage/' . $aboutContent->image) }}" 
+                                    <img src="{{ imageUrl($aboutContent->image) }}" 
                                          alt="Current image" 
                                          class="img-thumbnail"
                                          style="max-width: 300px;">
@@ -280,7 +280,7 @@
                             <label for="image" class="form-label">Image</label>
                             @if($aboutContent->image)
                                 <div class="mb-2">
-                                    <img src="{{ asset('storage/' . $aboutContent->image) }}" 
+                                    <img src="{{ imageUrl($aboutContent->image) }}" 
                                          alt="Current image" 
                                          class="img-thumbnail"
                                          style="max-width: 200px;">

@@ -163,7 +163,7 @@
                 </label>
                 @if($service->image)
                     <div class="mb-3">
-                        <img src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->title }}" class="w-full h-48 object-cover rounded-lg">
+                        <img src="{{ imageUrl($service->image) }}" alt="{{ $service->title }}" class="w-full h-48 object-cover rounded-lg">
                         <p class="mt-2 text-xs text-gray-600">Current image (upload new to replace)</p>
                     </div>
                 @endif

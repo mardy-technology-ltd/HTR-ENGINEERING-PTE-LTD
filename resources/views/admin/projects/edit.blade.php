@@ -66,7 +66,7 @@
                     <div class="mb-4">
                         <p class="text-sm text-gray-600 mb-2">Current Image:</p>
                         <div class="relative inline-block">
-                            <img src="{{ asset('storage/' . $project->image) }}" 
+                            <img src="{{ imageUrl($project->image) }}" 
                                  alt="{{ $project->title }}" 
                                  class="h-48 w-auto object-cover rounded-lg shadow-md"
                                  id="currentImage">

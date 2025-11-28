@@ -35,7 +35,7 @@
                 <div class="relative overflow-hidden group cursor-pointer" 
                      onclick="openLightbox({{ $loop->index }})">
                     @if(isset($project['image']) && $project['image'])
-                    <img src="{{ asset('storage/' . $project['image']) }}" 
+                    <img src="{{ imageUrl($project['image']) }}" 
                          alt="{{ $project['title'] }}" 
                          class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 lightbox-img"
                          data-index="{{ $loop->index }}"

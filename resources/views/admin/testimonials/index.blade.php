@@ -36,7 +36,7 @@
                         <tr class="hover:bg-gray-50">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @if($testimonial->avatar)
-                                    <img src="{{ asset('storage/' . $testimonial->avatar) }}" 
+                                    <img src="{{ imageUrl($testimonial->avatar) }}" 
                                          alt="{{ $testimonial->name }}" 
                                          class="h-12 w-12 rounded-full object-cover">
                                 @else
@@ -119,7 +119,7 @@
                 <div class="p-4">
                     <div class="flex gap-4 items-start">
                         @if($testimonial->avatar)
-                            <img src="{{ asset('storage/' . $testimonial->avatar) }}" 
+                            <img src="{{ imageUrl($testimonial->avatar) }}" 
                                  alt="{{ $testimonial->name }}" 
                                  class="h-16 w-16 rounded-full object-cover flex-shrink-0">
                         @else

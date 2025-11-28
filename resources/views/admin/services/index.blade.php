@@ -36,7 +36,7 @@
                             <!-- Background Image with Overlay -->
                             @if($service->image)
                                 <div class="absolute inset-0 z-0">
-                                    <img src="{{ asset('storage/' . $service->image) }}" 
+                                    <img src="{{ imageUrl($service->image) }}" 
                                          alt="{{ $service->title }}" 
                                          class="w-full h-full object-cover">
                                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/40"></div>

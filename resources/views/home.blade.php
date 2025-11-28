@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <a href="/service/${service.id}" class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 block">
                         ${service.image ? `
                             <div class="absolute inset-0 z-0">
-                                <img src="/storage/${service.image}" 
+                                <img src="${imageUrl(service.image)}" 
                                      alt="${escapeHtml(service.title)}" 
                                      class="w-full h-full object-cover">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/40"></div>
@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <a href="/project/${project.id}" class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer">
                         <div class="aspect-w-16 aspect-h-12 bg-gray-200">
                             ${project.image ? `
-                                <img src="/storage/${project.image}" 
+                                <img src="${imageUrl(project.image)}" 
                                      alt="${escapeHtml(project.title)}" 
                                      class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
                             ` : `
@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <p class="text-gray-600 mb-6 italic">"${escapeHtml(testimonial.message)}"</p>
                         <div class="flex items-center gap-4">
                             ${testimonial.avatar ? `
-                                <img src="/storage/${testimonial.avatar}" 
+                                <img src="${imageUrl(testimonial.avatar)}" 
                                      alt="${escapeHtml(testimonial.name)}" 
                                      class="w-12 h-12 rounded-full object-cover">
                             ` : `
@@ -347,6 +347,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
+        }
+        
+        // Image URL helper function for JavaScript
+        function imageUrl(path) {
+            if (!path) return '';
+            return '{{ url('') }}/uploads/' + path;
         }
 
         // Initial render

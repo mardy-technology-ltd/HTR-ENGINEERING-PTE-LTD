@@ -4,12 +4,17 @@ namespace App\Services;
 
 use App\Models\Testimonial;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 
 class TestimonialService
 {
     private const CACHE_TTL = 3600; // 1 hour
+    protected ImageService $imageService;
+
+    public function __construct(ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
 
     /**
      * Get all testimonials ordered by order field.
@@ -111,6 +116,10 @@ class TestimonialService
      */
     public function delete(Testimonial $testimonial): bool
     {
+        if ($testimonial->avatar) {
+            $this->imageService->deleteImage($testimonial->avatar);
+        }
+        
         $deleted = $testimonial->delete();
         $this->clearCache();
         return $deleted;
@@ -120,11 +129,11 @@ class TestimonialService
      * Handle avatar upload for testimonial.
      *
      * @param \Illuminate\Http\UploadedFile $file
-     * @return string
+     * @return string|null
      */
-    public function uploadAvatar($file): string
+    public function uploadAvatar($file): ?string
     {
-        return $file->store('testimonials', 'public');
+        return $this->imageService->uploadImage($file, 'testimonials');
     }
 
     /**
@@ -135,7 +144,7 @@ class TestimonialService
      */
     public function deleteAvatar(string $path): bool
     {
-        return Storage::disk('public')->delete($path);
+        return $this->imageService->deleteImage($path);
     }
 
     /**
@@ -162,3 +171,4 @@ class TestimonialService
         }
     }
 }
+

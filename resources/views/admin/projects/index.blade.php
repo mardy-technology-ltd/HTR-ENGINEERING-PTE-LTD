@@ -36,7 +36,7 @@
                         <tr class="hover:bg-gray-50 transition duration-150">
                             <td class="px-6 py-4 whitespace-nowrap">
                                 @if($project->image)
-                                    <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" class="h-16 w-16 object-cover rounded-lg shadow-sm">
+                                    <img src="{{ imageUrl($project->image) }}" alt="{{ $project->title }}" class="h-16 w-16 object-cover rounded-lg shadow-sm">
                                 @else
                                     <div class="h-16 w-16 bg-gray-200 rounded-lg flex items-center justify-center">
                                         <i class="fas fa-image text-gray-400 text-xl"></i>
@@ -125,7 +125,7 @@
                 <div class="p-4">
                     <div class="flex gap-4">
                         @if($project->image)
-                            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}" class="h-20 w-20 object-cover rounded-lg shadow-sm flex-shrink-0">
+                            <img src="{{ imageUrl($project->image) }}" alt="{{ $project->title }}" class="h-20 w-20 object-cover rounded-lg shadow-sm flex-shrink-0">
                         @else
                             <div class="h-20 w-20 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0">
                                 <i class="fas fa-image text-gray-400 text-2xl"></i>

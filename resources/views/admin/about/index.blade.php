@@ -81,7 +81,7 @@
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Company Image</label>
                                     @if($content->image)
                                         <div class="mb-3">
-                                            <img src="{{ asset('storage/' . $content->image) }}" 
+                                            <img src="{{ imageUrl($content->image) }}" 
                                                  alt="Current image" 
                                                  class="w-full rounded-lg border border-gray-200">
                                         </div>

@@ -99,7 +99,7 @@
                     </label>
                     @if($testimonial->avatar)
                         <div class="mb-3">
-                            <img src="{{ asset('storage/' . $testimonial->avatar) }}" 
+                            <img src="{{ imageUrl($testimonial->avatar) }}" 
                                  alt="{{ $testimonial->name }}" 
                                  class="h-24 w-24 rounded-full object-cover border-2 border-gray-200">
                         </div>

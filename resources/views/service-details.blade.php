@@ -39,7 +39,7 @@
             <div class="lg:col-span-2">
                 @if($service->image)
                 <div class="mb-8 rounded-2xl overflow-hidden shadow-xl">
-                    <img src="{{ asset('storage/' . $service->image) }}" 
+                    <img src="{{ imageUrl($service->image) }}" 
                          alt="{{ $service->title }}" 
                          class="w-full h-96 object-cover">
                 </div>

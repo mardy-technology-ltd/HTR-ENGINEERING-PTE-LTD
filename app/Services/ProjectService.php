@@ -4,12 +4,17 @@ namespace App\Services;
 
 use App\Models\Project;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 
 class ProjectService
 {
     private const CACHE_TTL = 3600; // 1 hour
+    protected ImageService $imageService;
+
+    public function __construct(ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
 
     /**
      * Get all projects ordered by order field.
@@ -168,6 +173,10 @@ class ProjectService
      */
     public function delete(Project $project): bool
     {
+        if ($project->image) {
+            $this->imageService->deleteImage($project->image);
+        }
+        
         $deleted = $project->delete();
         $this->clearCache();
         return $deleted;
@@ -177,11 +186,11 @@ class ProjectService
      * Handle image upload for project.
      *
      * @param \Illuminate\Http\UploadedFile $file
-     * @return string
+     * @return string|null
      */
-    public function uploadImage($file): string
+    public function uploadImage($file): ?string
     {
-        return $file->store('projects', 'public');
+        return $this->imageService->uploadImage($file, 'projects');
     }
 
     /**
@@ -192,7 +201,7 @@ class ProjectService
      */
     public function deleteImage(string $path): bool
     {
-        return Storage::disk('public')->delete($path);
+        return $this->imageService->deleteImage($path);
     }
 
     /**

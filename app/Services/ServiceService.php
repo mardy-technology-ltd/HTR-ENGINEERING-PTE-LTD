@@ -4,12 +4,17 @@ namespace App\Services;
 
 use App\Models\Service;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 
 class ServiceService
 {
     private const CACHE_TTL = 3600; // 1 hour
+    protected ImageService $imageService;
+
+    public function __construct(ImageService $imageService)
+    {
+        $this->imageService = $imageService;
+    }
 
     /**
      * Get all services ordered by order field.
@@ -125,6 +130,10 @@ class ServiceService
      */
     public function delete(Service $service): bool
     {
+        if ($service->image) {
+            $this->imageService->deleteImage($service->image);
+        }
+        
         $deleted = $service->delete();
         $this->clearCache();
         return $deleted;
@@ -134,11 +143,11 @@ class ServiceService
      * Handle image upload for service.
      *
      * @param \Illuminate\Http\UploadedFile $file
-     * @return string
+     * @return string|null
      */
-    public function uploadImage($file): string
+    public function uploadImage($file): ?string
     {
-        return $file->store('services', 'public');
+        return $this->imageService->uploadImage($file, 'services');
     }
 
     /**
@@ -149,7 +158,7 @@ class ServiceService
      */
     public function deleteImage(string $path): bool
     {
-        return Storage::disk('public')->delete($path);
+        return $this->imageService->deleteImage($path);
     }
 
     /**
@@ -176,3 +185,4 @@ class ServiceService
         }
     }
 }
+

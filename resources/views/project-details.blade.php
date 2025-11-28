@@ -43,7 +43,7 @@
                 {{-- Project Image --}}
                 <div class="mb-8 rounded-lg overflow-hidden shadow-xl">
                     @if($project->image)
-                    <img src="{{ asset('storage/' . $project->image) }}" 
+                    <img src="{{ imageUrl($project->image) }}" 
                          alt="{{ $project->title }}" 
                          class="w-full h-auto object-cover"
                          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\'%3E%3Crect fill=\'%23e5e7eb\' width=\'800\' height=\'600\'/%3E%3Ctext fill=\'%239ca3af\' font-family=\'sans-serif\' font-size=\'24\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3E{{ $project->title }}%3C/text%3E%3C/svg%3E'">
@@ -161,7 +161,7 @@
             <a href="{{ route('project.details', $related->id) }}" class="group bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                 <div class="relative overflow-hidden">
                     @if($related->image)
-                    <img src="{{ asset('storage/' . $related->image) }}" 
+                    <img src="{{ imageUrl($related->image) }}" 
                          alt="{{ $related->title }}" 
                          class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                          onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'300\'%3E%3Crect fill=\'%23e5e7eb\' width=\'400\' height=\'300\'/%3E%3Ctext fill=\'%239ca3af\' font-family=\'sans-serif\' font-size=\'16\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3E{{ $related->title }}%3C/text%3E%3C/svg%3E'">
