@@ -373,6 +373,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `).join('');
             }
+            
+            // Enable mobile auto-scroll for all sliders
+            const isMobile = window.innerWidth < 768;
+            if (isMobile && items.length > 1) {
+                setupMobileAutoScroll(container, containerId);
+            }
         }
 
         function nextSlide() {
@@ -399,8 +405,80 @@ document.addEventListener('DOMContentLoaded', function() {
             return '{{ url('') }}/uploads/' + path;
         }
 
-        // Initial render
-        renderItems(currentIndex);
+        // Setup mobile auto-scroll functionality
+        function setupMobileAutoScroll(container, containerId) {
+            let autoScrollInterval;
+            let isUserScrolling = false;
+            let scrollTimeout;
+            
+            const cardWidth = 280; // Width of each card plus gap
+            const totalWidth = container.scrollWidth;
+            const visibleWidth = container.clientWidth;
+            
+            // Start auto-scroll
+            function startAutoScroll() {
+                autoScrollInterval = setInterval(() => {
+                    if (!isUserScrolling) {
+                        const currentScroll = container.scrollLeft;
+                        const maxScroll = totalWidth - visibleWidth;
+                        
+                        if (currentScroll >= maxScroll) {
+                            // Reset to beginning
+                            container.scrollTo({ left: 0, behavior: 'smooth' });
+                        } else {
+                            // Scroll to next card
+                            container.scrollBy({ left: cardWidth + 16, behavior: 'smooth' }); // 16px for gap
+                        }
+                    }
+                }, 4000); // Auto-scroll every 4 seconds
+            }
+            
+            // Stop auto-scroll
+            function stopAutoScroll() {
+                if (autoScrollInterval) {
+                    clearInterval(autoScrollInterval);
+                    autoScrollInterval = null;
+                }
+            }
+            
+            // Detect user scrolling
+            container.addEventListener('scroll', () => {
+                isUserScrolling = true;
+                stopAutoScroll();
+                
+                // Clear existing timeout
+                if (scrollTimeout) {
+                    clearTimeout(scrollTimeout);
+                }
+                
+                // Resume auto-scroll after user stops scrolling for 3 seconds
+                scrollTimeout = setTimeout(() => {
+                    isUserScrolling = false;
+                    startAutoScroll();
+                }, 3000);
+            });
+            
+            // Handle touch events for better mobile experience
+            let touchStartX = 0;
+            
+            container.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                isUserScrolling = true;
+                stopAutoScroll();
+            });
+            
+            container.addEventListener('touchend', () => {
+                // Resume auto-scroll after touch ends with a delay
+                setTimeout(() => {
+                    if (!isUserScrolling) {
+                        startAutoScroll();
+                    }
+                }, 2000);
+            });
+            
+            // Start initial auto-scroll
+            startAutoScroll();
+        }
 
         // Navigation functions
         function nextSlide() {
@@ -412,6 +490,9 @@ document.addEventListener('DOMContentLoaded', function() {
             currentIndex = (currentIndex - 1 + items.length) % items.length;
             renderItems(currentIndex);
         }
+
+        // Initial render
+        renderItems(currentIndex);
 
         // Show/hide navigation arrows and setup auto-slide
         const isMobile = window.innerWidth < 768;
