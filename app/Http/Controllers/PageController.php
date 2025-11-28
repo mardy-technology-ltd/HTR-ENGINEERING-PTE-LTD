@@ -40,9 +40,9 @@ class PageController extends Controller
      */
     public function about()
     {
-        $hero = AboutContent::getBySection('hero');
-        $mission = AboutContent::getBySection('mission');
-        $vision = AboutContent::getBySection('vision');
+        $hero = AboutContent::getBySection('who_we_are');
+        $mission = AboutContent::getBySection('our_mission');
+        $vision = AboutContent::getBySection('why_choose_us');
 
         return view('about', compact('hero', 'mission', 'vision'));
     }

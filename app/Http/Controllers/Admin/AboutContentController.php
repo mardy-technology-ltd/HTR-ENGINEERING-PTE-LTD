@@ -3,12 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\AboutContent;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Artisan;
 
 class AboutContentController extends AdminController
 {
+    protected ImageService $imageService;
+
+    public function __construct(ImageService $imageService)
+    {
+        parent::__construct();
+        $this->imageService = $imageService;
+    }
+
     public function index()
     {
         $contents = AboutContent::ordered()->get();
@@ -31,13 +40,14 @@ class AboutContentController extends AdminController
             'is_active' => 'boolean'
         ]);
 
-        // Handle image upload
+        // Handle image upload using ImageService
         if ($request->hasFile('image')) {
             // Delete old image
             if ($aboutContent->image) {
-                Storage::disk('public')->delete($aboutContent->image);
+                $this->imageService->deleteImage($aboutContent->image, 'about');
             }
-            $validated['image'] = $request->file('image')->store('about', 'public');
+            // Upload new image
+            $validated['image'] = $this->imageService->uploadImage($request->file('image'), 'about');
         }
 
         // Handle checkbox
@@ -70,13 +80,14 @@ class AboutContentController extends AdminController
                 'is_active' => isset($data['is_active']) ? 1 : 0,
             ];
 
-            // Handle image upload
+            // Handle image upload using ImageService
             if ($request->hasFile("sections.{$sectionId}.image")) {
                 // Delete old image
                 if ($aboutContent->image) {
-                    Storage::disk('public')->delete($aboutContent->image);
+                    $this->imageService->deleteImage($aboutContent->image, 'about');
                 }
-                $updateData['image'] = $request->file("sections.{$sectionId}.image")->store('about', 'public');
+                // Upload new image
+                $updateData['image'] = $this->imageService->uploadImage($request->file("sections.{$sectionId}.image"), 'about');
             }
 
             $aboutContent->update($updateData);

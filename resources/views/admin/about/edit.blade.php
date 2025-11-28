@@ -63,7 +63,7 @@
                             @enderror
                         </div>
 
-                        @if($aboutContent->section_key == 'hero')
+                        @if($aboutContent->section_key == 'who_we_are')
                         <div class="mb-3">
                             <label for="image" class="form-label">Company Image</label>
                             @if($aboutContent->image)

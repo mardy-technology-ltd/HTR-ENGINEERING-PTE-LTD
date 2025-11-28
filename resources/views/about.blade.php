@@ -31,15 +31,20 @@
             </div>
             <div class="relative">
                 <div class="bg-primary-100 rounded-2xl p-8 shadow-xl">
-                    @if($hero && $hero->image)
+                    @if($hero && $hero->image && imageExists($hero->image))
                         <img src="{{ imageUrl($hero->image) }}" 
                              alt="{{ $hero->title }}" 
                              class="rounded-lg shadow-lg w-full">
                     @else
-                        <img src="{{ imageUrl('about-office.jpg') }}" 
-                             alt="HTR ENGINEERING Office" 
-                             class="rounded-lg shadow-lg w-full"
-                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\'%3E%3Crect fill=\'%23e5e7eb\' width=\'600\' height=\'400\'/%3E%3Ctext fill=\'%239ca3af\' font-family=\'sans-serif\' font-size=\'24\' x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'%3EOur Company%3C/text%3E%3C/svg%3E'">
+                        <div class="rounded-lg shadow-lg w-full h-80 bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
+                            <div class="text-center">
+                                <svg class="w-16 h-16 mx-auto text-primary-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                                </svg>
+                                <p class="text-primary-600 font-semibold">HTR ENGINEERING</p>
+                                <p class="text-primary-500 text-sm">Upload company image from admin panel</p>
+                            </div>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -48,7 +53,7 @@
 </section>
 @endif
 
-{{-- Mission & Vision --}}
+{{-- Mission & Why Choose Us --}}
 @if(($mission && $mission->is_active) || ($vision && $vision->is_active))
 <section class="py-16 md:py-20 bg-gray-50">
     <div class="container mx-auto px-4">
@@ -71,13 +76,12 @@
             <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
                 <div class="bg-primary-100 w-16 h-16 rounded-full flex items-center justify-center mb-6">
                     <svg class="w-8 h-8 text-primary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m3 5.197H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ $vision->title ?? 'Our Vision' }}</h3>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ $vision->title ?? 'Why Choose Us' }}</h3>
                 <p class="text-gray-600">
-                    {{ $vision->content ?? 'To be Singapore\'s most trusted and preferred provider of security and construction solutions. We aspire to set industry benchmarks through continuous innovation, exceptional service quality, and sustainable business practices.' }}
+                    {{ $vision->content ?? 'Choose HTR Engineering for our extensive experience, professional team, quality materials, competitive pricing, and dedicated customer service. We pride ourselves on completing projects on time and within budget while maintaining the highest standards of workmanship.' }}
                 </p>
             </div>
             @endif
