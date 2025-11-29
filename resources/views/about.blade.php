@@ -5,7 +5,7 @@
 
 @section('content')
 {{-- Page Header --}}
-<section class="bg-gradient-to-r from-primary-800 to-primary-900 text-white py-8 md:py-12">
+<section class="bg-gradient-to-r from-primary-800 to-primary-900 text-white py-6 md:py-10">
     <div class="container mx-auto px-4">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
         <p class="text-xl text-primary-100 max-w-3xl">
@@ -55,7 +55,7 @@
 
 {{-- Mission & Why Choose Us --}}
 @if(($mission && $mission->is_active) || ($vision && $vision->is_active))
-<section class="py-16 md:py-20 bg-gray-50">
+<section class="py-12 md:py-16 bg-gray-50">
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             @if($mission && $mission->is_active)
@@ -91,7 +91,7 @@
 @endif
 
 {{-- Why Choose Us --}}
-<section class="py-16 md:py-20 bg-white">
+<section class="py-12 md:py-16 bg-white">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Why Choose Us</h2>

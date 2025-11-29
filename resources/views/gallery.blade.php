@@ -5,7 +5,7 @@
 
 @section('content')
 {{-- Page Header --}}
-<section class="bg-gradient-to-r from-primary-800 to-primary-900 text-white py-8 md:py-12">
+<section class="bg-gradient-to-r from-primary-800 to-primary-900 text-white py-6 md:py-10">
     <div class="container mx-auto px-4">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">Project Gallery</h1>
         <p class="text-xl text-primary-100 max-w-3xl">
@@ -15,7 +15,7 @@
 </section>
 
 {{-- Gallery Section --}}
-<section class="py-16 md:py-20 bg-gray-50">
+<section class="py-12 md:py-16 bg-gray-50">
     <div class="container mx-auto px-4">
         {{-- Category Filter --}}
         <div class="flex flex-wrap justify-center gap-3 mb-12">

@@ -72,7 +72,7 @@
 </section>
 
 {{-- Services Preview Section --}}
-<section class="py-16 md:py-24 bg-gray-50">
+<section class="py-12 md:py-16 bg-gray-50">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
@@ -109,7 +109,7 @@
 </section>
 
 {{-- Latest Projects Section --}}
-<section class="py-16 md:py-24 bg-white">
+<section class="py-12 md:py-16 bg-white">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Latest Projects</h2>
@@ -146,7 +146,7 @@
 </section>
 
 {{-- Testimonials Section --}}
-<section class="py-16 md:py-24 bg-gradient-to-br from-primary-50 to-blue-50">
+<section class="py-12 md:py-16 bg-gradient-to-br from-primary-50 to-blue-50">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Clients Say</h2>

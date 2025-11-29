@@ -5,7 +5,7 @@
 
 @section('content')
 {{-- Page Header --}}
-<section class="bg-gradient-to-r from-primary-800 to-primary-900 text-white py-8 md:py-12">
+<section class="bg-gradient-to-r from-primary-800 to-primary-900 text-white py-6 md:py-10">
     <div class="container mx-auto px-4">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Services</h1>
         <p class="text-xl text-primary-100 max-w-3xl">
@@ -89,7 +89,7 @@
 </section>
 
 {{-- Service Process --}}
-<section class="py-16 md:py-20 bg-white">
+<section class="py-12 md:py-16 bg-white">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Service Process</h2>
@@ -127,7 +127,7 @@
 </section>
 
 {{-- Industries Served --}}
-<section class="py-16 md:py-20 bg-gray-50">
+<section class="py-12 md:py-16 bg-gray-50">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Industries We Serve</h2>
@@ -166,7 +166,7 @@
 </section>
 
 {{-- Call to Action --}}
-<section class="py-16 bg-gradient-to-r from-primary-700 to-primary-900 text-white">
+<section class="py-12 bg-gradient-to-r from-primary-700 to-primary-900 text-white">
     <div class="container mx-auto px-4 text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-4">Need Our Services?</h2>
         <p class="text-xl mb-8 text-primary-100 max-w-2xl mx-auto">
