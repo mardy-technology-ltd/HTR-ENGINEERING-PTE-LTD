@@ -127,6 +127,24 @@ class HomeController extends Controller
                     'image' => 'project3.jpg',
                     'description' => 'Heavy-duty roller shutters and security grilles for manufacturing plant.'
                 ],
+                [
+                    'title' => 'Shopping Mall Security Grilles',
+                    'category' => 'Commercial',
+                    'image' => 'project4.jpg',
+                    'description' => 'Modern security grilles installation for retail outlets.'
+                ],
+                [
+                    'title' => 'Office Building Automatic Doors',
+                    'category' => 'Commercial',
+                    'image' => 'project5.jpg',
+                    'description' => 'Sleek automatic door systems for corporate headquarters.'
+                ],
+                [
+                    'title' => 'Factory Roller Shutters',
+                    'category' => 'Industrial',
+                    'image' => 'project6.jpg',
+                    'description' => 'High-performance roller shutters for industrial operations.'
+                ],
             ];
     }
 

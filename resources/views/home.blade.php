@@ -319,13 +319,20 @@ document.addEventListener('DOMContentLoaded', function() {
         return '{{ url('') }}/uploads/' + path;
     }
 
+    // Responsive Slider Configuration
+    function getVisibleCards() {
+        if (window.innerWidth <= 768) return 1; // Mobile
+        if (window.innerWidth <= 1024) return 2; // Tablet
+        return 3; // Desktop
+    }
+
     // Services Slider Implementation
     const servicesData = @json($services);
     const servicesContainer = document.getElementById('servicesSlider');
     
     if (servicesContainer && servicesData && servicesData.length > 0) {
         let currentIndex = 0;
-        const maxVisible = 3;
+        let maxVisible = getVisibleCards();
         
         // Render service cards
         function renderServices() {
@@ -411,12 +418,17 @@ document.addEventListener('DOMContentLoaded', function() {
         renderServices();
     }
 
-    // Projects Slider - Simple Version
+    // Projects Slider - Full Functionality
     const projectsData = @json($projects);
     const projectsContainer = document.getElementById('projectsSlider');
     
     if (projectsContainer && projectsData && projectsData.length > 0) {
-        projectsContainer.innerHTML = projectsData.slice(0, 3).map(project => `
+        let currentProjectIndex = 0;
+        let maxVisibleProjects = getVisibleCards();
+        
+        // Render project cards
+        function renderProjects() {
+            projectsContainer.innerHTML = projectsData.map(project => `
             <div class="slider-card group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                 ${project.image ? `
                     <img src="${imageUrl(project.image)}" 
@@ -439,14 +451,86 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `).join('');
+        }
+        
+        function updateProjectSliderPosition() {
+            maxVisibleProjects = getVisibleCards();
+            const cardWidth = 100 / maxVisibleProjects;
+            const translateX = -(currentProjectIndex * cardWidth);
+            projectsContainer.style.transform = `translateX(${translateX}%)`;
+            
+            // Update navigation button states
+            const prevBtn = document.getElementById('projectsSlider-prev');
+            const nextBtn = document.getElementById('projectsSlider-next');
+            
+            if (prevBtn) prevBtn.style.opacity = currentProjectIndex === 0 ? '0.5' : '1';
+            if (nextBtn) nextBtn.style.opacity = currentProjectIndex >= projectsData.length - maxVisibleProjects ? '0.5' : '1';
+        }
+
+        // Navigation Event Listeners for Projects
+        const projectPrevBtn = document.getElementById('projectsSlider-prev');
+        const projectNextBtn = document.getElementById('projectsSlider-next');
+        
+        if (projectPrevBtn && projectNextBtn) {
+            projectPrevBtn.addEventListener('click', function() {
+                if (currentProjectIndex > 0) {
+                    currentProjectIndex--;
+                    updateProjectSliderPosition();
+                }
+            });
+            
+            projectNextBtn.addEventListener('click', function() {
+                maxVisibleProjects = getVisibleCards();
+                if (currentProjectIndex < projectsData.length - maxVisibleProjects) {
+                    currentProjectIndex++;
+                    updateProjectSliderPosition();
+                }
+            });
+            
+            // Update arrow visibility
+            function updateProjectArrowVisibility() {
+                maxVisibleProjects = getVisibleCards();
+                const showArrows = projectsData.length > maxVisibleProjects;
+                projectPrevBtn.style.display = showArrows ? 'flex' : 'none';
+                projectNextBtn.style.display = showArrows ? 'flex' : 'none';
+            }
+            updateProjectArrowVisibility();
+        }
+
+        // Auto slide for projects
+        let projectAutoSlideInterval;
+        function startProjectAutoSlide() {
+            clearInterval(projectAutoSlideInterval);
+            if (projectsData.length > getVisibleCards()) {
+                projectAutoSlideInterval = setInterval(function() {
+                    maxVisibleProjects = getVisibleCards();
+                    if (currentProjectIndex >= projectsData.length - maxVisibleProjects) {
+                        currentProjectIndex = 0;
+                    } else {
+                        currentProjectIndex++;
+                    }
+                    updateProjectSliderPosition();
+                }, 4500);
+            }
+        }
+        
+        // Initialize projects
+        renderProjects();
+        updateProjectSliderPosition();
+        startProjectAutoSlide();
     }
 
-    // Testimonials Slider - Simple Version
+    // Testimonials Slider - Full Functionality
     const testimonialsData = @json($testimonials);
     const testimonialsContainer = document.getElementById('testimonialsSlider');
     
     if (testimonialsContainer && testimonialsData && testimonialsData.length > 0) {
-        testimonialsContainer.innerHTML = testimonialsData.slice(0, 3).map(testimonial => `
+        let currentTestimonialIndex = 0;
+        let maxVisibleTestimonials = getVisibleCards();
+        
+        // Render testimonials
+        function renderTestimonials() {
+            testimonialsContainer.innerHTML = testimonialsData.map(testimonial => `
             <div class="slider-card bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow">
                 <div class="flex gap-1 mb-4">
                     ${Array(parseInt(testimonial.rating || 5)).fill().map(() => `
@@ -473,6 +557,73 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         `).join('');
+        }
+        
+        function updateTestimonialSliderPosition() {
+            maxVisibleTestimonials = getVisibleCards();
+            const cardWidth = 100 / maxVisibleTestimonials;
+            const translateX = -(currentTestimonialIndex * cardWidth);
+            testimonialsContainer.style.transform = `translateX(${translateX}%)`;
+            
+            // Update navigation button states
+            const prevBtn = document.getElementById('testimonialsSlider-prev');
+            const nextBtn = document.getElementById('testimonialsSlider-next');
+            
+            if (prevBtn) prevBtn.style.opacity = currentTestimonialIndex === 0 ? '0.5' : '1';
+            if (nextBtn) nextBtn.style.opacity = currentTestimonialIndex >= testimonialsData.length - maxVisibleTestimonials ? '0.5' : '1';
+        }
+
+        // Navigation Event Listeners for Testimonials
+        const testimonialPrevBtn = document.getElementById('testimonialsSlider-prev');
+        const testimonialNextBtn = document.getElementById('testimonialsSlider-next');
+        
+        if (testimonialPrevBtn && testimonialNextBtn) {
+            testimonialPrevBtn.addEventListener('click', function() {
+                if (currentTestimonialIndex > 0) {
+                    currentTestimonialIndex--;
+                    updateTestimonialSliderPosition();
+                }
+            });
+            
+            testimonialNextBtn.addEventListener('click', function() {
+                maxVisibleTestimonials = getVisibleCards();
+                if (currentTestimonialIndex < testimonialsData.length - maxVisibleTestimonials) {
+                    currentTestimonialIndex++;
+                    updateTestimonialSliderPosition();
+                }
+            });
+            
+            // Update arrow visibility
+            function updateTestimonialArrowVisibility() {
+                maxVisibleTestimonials = getVisibleCards();
+                const showArrows = testimonialsData.length > maxVisibleTestimonials;
+                testimonialPrevBtn.style.display = showArrows ? 'flex' : 'none';
+                testimonialNextBtn.style.display = showArrows ? 'flex' : 'none';
+            }
+            updateTestimonialArrowVisibility();
+        }
+
+        // Auto slide for testimonials
+        let testimonialAutoSlideInterval;
+        function startTestimonialAutoSlide() {
+            clearInterval(testimonialAutoSlideInterval);
+            if (testimonialsData.length > getVisibleCards()) {
+                testimonialAutoSlideInterval = setInterval(function() {
+                    maxVisibleTestimonials = getVisibleCards();
+                    if (currentTestimonialIndex >= testimonialsData.length - maxVisibleTestimonials) {
+                        currentTestimonialIndex = 0;
+                    } else {
+                        currentTestimonialIndex++;
+                    }
+                    updateTestimonialSliderPosition();
+                }, 5000);
+            }
+        }
+        
+        // Initialize testimonials
+        renderTestimonials();
+        updateTestimonialSliderPosition();
+        startTestimonialAutoSlide();
     }
 });
 </script>
