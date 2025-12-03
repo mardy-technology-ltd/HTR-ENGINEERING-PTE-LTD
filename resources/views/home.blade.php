@@ -313,7 +313,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function imageUrl(path) {
         if (!path) return '';
-        return '{{ url('') }}/uploads/' + path;
+        // Remove leading slash if present
+        path = path.replace(/^\/+/, '');
+        // Check if path already starts with 'uploads/', if not add it
+        if (!path.startsWith('uploads/')) {
+            path = 'uploads/' + path;
+        }
+        return '{{ url('') }}/' + path;
     }
 
     // Responsive Slider Configuration
