@@ -41,8 +41,8 @@ class HomeController extends Controller
             $services = $this->getFallbackServices();
         }
 
-        // Fetch all featured projects from database (for slider)
-        $projects = $this->projectService->getFeaturedForHome(null); // Get all
+        // Fetch all projects from database (for slider)
+        $projects = $this->projectService->getAllForHome(null); // Get all
         
         // Fallback if no projects
         if (empty($projects)) {

@@ -49,6 +49,33 @@ class ProjectService
     }
 
     /**
+     * Get all projects formatted for home page.
+     *
+     * @param int|null $limit
+     * @return array
+     */
+    public function getAllForHome(?int $limit = null): array
+    {
+        $query = Project::orderBy('order');
+        
+        if ($limit) {
+            $query->limit($limit);
+        }
+        
+        return $query->get()
+            ->map(function($project) {
+                return [
+                    'id' => $project->id,
+                    'title' => $project->title,
+                    'category' => $project->location ?? 'Project',
+                    'image' => $project->image,
+                    'description' => $project->description
+                ];
+            })
+            ->toArray();
+    }
+
+    /**
      * Get featured projects.
      *
      * @param int|null $limit
