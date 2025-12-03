@@ -61,13 +61,15 @@ class PageController extends Controller
     /**
      * Display service details page.
      *
-     * @param int $id
+     * @param \App\Models\Service $service
      * @return \Illuminate\View\View
      */
-    public function serviceDetails(int $id)
+    public function serviceDetails(Service $service)
     {
-        $service = $this->serviceService->findById($id);
-        $relatedServices = $this->serviceService->getActive(3);
+        // Get related services (exclude current service)
+        $relatedServices = $this->serviceService->getActive(3)
+            ->where('id', '!=', $service->id)
+            ->take(3);
 
         return view('service-details', compact('service', 'relatedServices'));
     }

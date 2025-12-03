@@ -6,24 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     {{-- SEO Meta Tags --}}
-    <title>@yield('title', 'HTR ENGINEERING PTE LTD - Singapore')</title>
-    <meta name="description" content="@yield('meta_description', 'Professional roller shutters, security grilles, automatic gates and doors in Singapore. Quality construction services with over 15 years of experience.')">
-    <meta name="keywords" content="roller shutters singapore, security grilles, automatic gates, automatic doors, metal works, construction singapore">
-    <meta name="author" content="HTR ENGINEERING PTE LTD">
+    <title>@yield('title', 'Roller Shutter Singapore - Professional Installation & Repair Services')</title>
+    <meta name="description" content="@yield('meta_description', 'Leading roller shutter installation and repair service in Singapore. Quality security grilles, automatic gates, doors and metal works. Over 15 years experience. Contact us today!')">
+    <meta name="keywords" content="roller shutters singapore, security grilles, automatic gates, automatic doors, metal works, construction singapore, roller shutter repair, roller shutter installation">
+    <meta name="author" content="Roller Shutter Singapore">
     <link rel="canonical" href="@yield('canonical', url()->current())">
     
     {{-- Open Graph Tags --}}
-    <meta property="og:title" content="@yield('og_title', 'HTR ENGINEERING PTE LTD')">
-    <meta property="og:description" content="@yield('og_description', 'Professional roller shutters, security grilles, automatic gates and doors in Singapore.')">
-    <meta property="og:type" content="website">
+    <meta property="og:title" content="@yield('og_title', 'Roller Shutter Singapore - Professional Installation & Repair')">
+    <meta property="og:description" content="@yield('og_description', 'Leading roller shutter installation and repair service in Singapore. Quality security grilles, automatic gates, doors.')">
+    <meta property="og:type" content="@yield('og_type', 'website')">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:image" content="@yield('og_image', asset('images/og-image.jpg'))">
     <meta property="og:locale" content="en_SG">
-    <meta property="og:site_name" content="HTR ENGINEERING PTE LTD">
+    <meta property="og:site_name" content="Roller Shutter Singapore">
     
     {{-- Twitter Card Tags --}}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('og_title', 'HTR ENGINEERING PTE LTD')">
+    <meta name="twitter:title" content="@yield('og_title', 'Roller Shutter Singapore')">
     <meta name="twitter:description" content="@yield('og_description', 'Professional roller shutters, security grilles, automatic gates and doors in Singapore.')">
     <meta name="twitter:image" content="@yield('og_image', asset('images/og-image.jpg'))">
     

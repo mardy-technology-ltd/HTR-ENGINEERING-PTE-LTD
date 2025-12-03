@@ -59,6 +59,7 @@ class ServiceService
             ->map(function($service) {
                 return [
                     'id' => $service->id,
+                    'slug' => $service->slug,
                     'title' => $service->title,
                     'description' => $service->description,
                     'icon' => $service->icon ?? 'default',

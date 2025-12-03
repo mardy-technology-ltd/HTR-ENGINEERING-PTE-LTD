@@ -506,11 +506,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const servicesData = @json($services);
     initializeSlider('servicesSlider', servicesData, function(service) {
         return `
-                <a href="/service/${service.id}" class="slider-card group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 block">
+                <a href="/service/${service.slug}" class="slider-card group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 block">
                     ${service.image ? `
                         <div class="absolute inset-0 z-0">
                             <img src="${imageUrl(service.image)}" 
-                                 alt="${escapeHtml(service.title)}" 
+                                 alt="${escapeHtml(service.title)} - Singapore Professional Service" 
+                                 title="${escapeHtml(service.title)}"
+                                 loading="lazy"
                                  class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-black/40"></div>
                         </div>

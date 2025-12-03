@@ -1,6 +1,40 @@
+# Robots.txt for Roller Shutter Singapore (rollershuttersingapore.com)
+# This file controls which pages search engines can crawl
+
 User-agent: *
+
+# Allow all pages except admin areas
+Allow: /
+Allow: /service/
+Allow: /services
+Allow: /gallery
+Allow: /about
+Allow: /contact
+Allow: /project/
+
+# Disallow admin and authentication pages
 Disallow: /admin
+Disallow: /admin/*
 Disallow: /login
 Disallow: /register
+Disallow: /password
+Disallow: /dashboard
 
-Sitemap: http://localhost:8000/sitemap.xml
+# Disallow API routes if any
+Disallow: /api/
+
+# Sitemap location (update this URL when deploying to production)
+Sitemap: https://rollershuttersingapore.com/sitemap.xml
+
+# Crawl delay (optional - be nice to the server)
+# Crawl-delay: 10
+
+# Search Engine Specific Rules
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /

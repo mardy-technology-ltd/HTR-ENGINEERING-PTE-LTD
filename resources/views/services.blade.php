@@ -19,12 +19,14 @@
     <div class="container mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @forelse($services as $service)
-            <a href="{{ route('service.details', $service->id) }}" class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 block">
+            <a href="{{ route('service.details', $service->slug) }}" class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 block">
                 {{-- Background Image with Overlay --}}
                 @if($service->image)
                     <div class="absolute inset-0 z-0">
                         <img src="{{ imageUrl($service->image) }}" 
-                             alt="{{ $service->title }}" 
+                             alt="{{ $service->title }} Service in Singapore - Professional Installation & Repair" 
+                             title="{{ $service->title }}"
+                             loading="lazy"
                              class="w-full h-64 object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/50"></div>
                     </div>
