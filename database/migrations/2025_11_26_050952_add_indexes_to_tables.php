@@ -14,6 +14,7 @@ return new class extends Migration
         // Add indexes to services table
         Schema::table('services', function (Blueprint $table) {
             $table->index('is_active');
+            $table->index('slug'); // For routing
             $table->index('order');
             $table->index(['is_active', 'order']);
         });
@@ -59,6 +60,7 @@ return new class extends Migration
         // Remove indexes from services table
         Schema::table('services', function (Blueprint $table) {
             $table->dropIndex(['is_active']);
+            $table->dropIndex(['slug']);
             $table->dropIndex(['order']);
             $table->dropIndex(['is_active', 'order']);
         });
