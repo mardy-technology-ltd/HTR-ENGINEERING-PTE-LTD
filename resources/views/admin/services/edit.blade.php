@@ -84,58 +84,85 @@
                     <div class="flex-1">
                         <select name="icon" 
                                 id="icon" 
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 @error('icon') border-red-500 @enderror"
-                                required
-                                onchange="updateIconPreview(this.value)">
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg select2-icon"
+                                required>
                             <option value="">-- Select Icon --</option>
                             <optgroup label="🏗️ Construction & Building">
-                                <option value="fas fa-building" {{ old('icon', $service->icon) == 'fas fa-building' ? 'selected' : '' }}>Building</option>
-                                <option value="fas fa-home" {{ old('icon', $service->icon) == 'fas fa-home' ? 'selected' : '' }}>Home</option>
-                                <option value="fas fa-hammer" {{ old('icon', $service->icon) == 'fas fa-hammer' ? 'selected' : '' }}>Hammer</option>
-                                <option value="fas fa-tools" {{ old('icon', $service->icon) == 'fas fa-tools' ? 'selected' : '' }}>Tools</option>
-                                <option value="fas fa-wrench" {{ old('icon', $service->icon) == 'fas fa-wrench' ? 'selected' : '' }}>Wrench</option>
-                                <option value="fas fa-screwdriver" {{ old('icon', $service->icon) == 'fas fa-screwdriver' ? 'selected' : '' }}>Screwdriver</option>
-                                <option value="fas fa-hard-hat" {{ old('icon', $service->icon) == 'fas fa-hard-hat' ? 'selected' : '' }}>Hard Hat</option>
-                                <option value="fas fa-paint-roller" {{ old('icon', $service->icon) == 'fas fa-paint-roller' ? 'selected' : '' }}>Paint Roller</option>
+                                <option value="fas fa-cogs" {{ old('icon', $service->icon) == 'fas fa-cogs' ? 'selected' : '' }}>⚙️ Cogs/Gears</option>
+                                <option value="fas fa-building" {{ old('icon', $service->icon) == 'fas fa-building' ? 'selected' : '' }}>🏢 Building</option>
+                                <option value="fas fa-home" {{ old('icon', $service->icon) == 'fas fa-home' ? 'selected' : '' }}>🏠 Home</option>
+                                <option value="fas fa-hammer" {{ old('icon', $service->icon) == 'fas fa-hammer' ? 'selected' : '' }}>🔨 Hammer</option>
+                                <option value="fas fa-tools" {{ old('icon', $service->icon) == 'fas fa-tools' ? 'selected' : '' }}>🔧 Tools</option>
+                                <option value="fas fa-wrench" {{ old('icon', $service->icon) == 'fas fa-wrench' ? 'selected' : '' }}>🔧 Wrench</option>
+                                <option value="fas fa-screwdriver" {{ old('icon', $service->icon) == 'fas fa-screwdriver' ? 'selected' : '' }}>🪛 Screwdriver</option>
+                                <option value="fas fa-hard-hat" {{ old('icon', $service->icon) == 'fas fa-hard-hat' ? 'selected' : '' }}>⛑️ Hard Hat</option>
+                                <option value="fas fa-paint-roller" {{ old('icon', $service->icon) == 'fas fa-paint-roller' ? 'selected' : '' }}>🖌️ Paint Roller</option>
+                                <option value="fas fa-drafting-compass" {{ old('icon', $service->icon) == 'fas fa-drafting-compass' ? 'selected' : '' }}>📐 Drafting Compass</option>
+                                <option value="fas fa-ruler-combined" {{ old('icon', $service->icon) == 'fas fa-ruler-combined' ? 'selected' : '' }}>📏 Ruler</option>
                             </optgroup>
                             <optgroup label="🔒 Security & Safety">
-                                <option value="fas fa-shield-alt" {{ old('icon', $service->icon) == 'fas fa-shield-alt' ? 'selected' : '' }}>Shield</option>
-                                <option value="fas fa-lock" {{ old('icon', $service->icon) == 'fas fa-lock' ? 'selected' : '' }}>Lock</option>
-                                <option value="fas fa-key" {{ old('icon', $service->icon) == 'fas fa-key' ? 'selected' : '' }}>Key</option>
-                                <option value="fas fa-user-shield" {{ old('icon', $service->icon) == 'fas fa-user-shield' ? 'selected' : '' }}>User Shield</option>
-                                <option value="fas fa-eye" {{ old('icon', $service->icon) == 'fas fa-eye' ? 'selected' : '' }}>Eye (CCTV)</option>
-                                <option value="fas fa-video" {{ old('icon', $service->icon) == 'fas fa-video' ? 'selected' : '' }}>Video Camera</option>
+                                <option value="fas fa-shield-alt" {{ old('icon', $service->icon) == 'fas fa-shield-alt' ? 'selected' : '' }}>🛡️ Shield</option>
+                                <option value="fas fa-lock" {{ old('icon', $service->icon) == 'fas fa-lock' ? 'selected' : '' }}>🔒 Lock</option>
+                                <option value="fas fa-key" {{ old('icon', $service->icon) == 'fas fa-key' ? 'selected' : '' }}>🔑 Key</option>
+                                <option value="fas fa-user-shield" {{ old('icon', $service->icon) == 'fas fa-user-shield' ? 'selected' : '' }}>👮 User Shield</option>
+                                <option value="fas fa-eye" {{ old('icon', $service->icon) == 'fas fa-eye' ? 'selected' : '' }}>👁️ Eye (CCTV)</option>
+                                <option value="fas fa-video" {{ old('icon', $service->icon) == 'fas fa-video' ? 'selected' : '' }}>📹 Video Camera</option>
+                                <option value="fas fa-camera" {{ old('icon', $service->icon) == 'fas fa-camera' ? 'selected' : '' }}>📷 Camera</option>
+                                <option value="fas fa-fingerprint" {{ old('icon', $service->icon) == 'fas fa-fingerprint' ? 'selected' : '' }}>👆 Fingerprint</option>
+                                <option value="fas fa-id-card" {{ old('icon', $service->icon) == 'fas fa-id-card' ? 'selected' : '' }}>🪪 ID Card</option>
                             </optgroup>
                             <optgroup label="🚪 Doors & Gates">
-                                <option value="fas fa-door-open" {{ old('icon', $service->icon) == 'fas fa-door-open' ? 'selected' : '' }}>Door Open</option>
-                                <option value="fas fa-door-closed" {{ old('icon', $service->icon) == 'fas fa-door-closed' ? 'selected' : '' }}>Door Closed</option>
-                                <option value="fas fa-warehouse" {{ old('icon', $service->icon) == 'fas fa-warehouse' ? 'selected' : '' }}>Warehouse</option>
-                                <option value="fas fa-dungeon" {{ old('icon', $service->icon) == 'fas fa-dungeon' ? 'selected' : '' }}>Gate</option>
+                                <option value="fas fa-door-open" {{ old('icon', $service->icon) == 'fas fa-door-open' ? 'selected' : '' }}>🚪 Door Open</option>
+                                <option value="fas fa-door-closed" {{ old('icon', $service->icon) == 'fas fa-door-closed' ? 'selected' : '' }}>🚪 Door Closed</option>
+                                <option value="fas fa-warehouse" {{ old('icon', $service->icon) == 'fas fa-warehouse' ? 'selected' : '' }}>🏭 Warehouse</option>
+                                <option value="fas fa-dungeon" {{ old('icon', $service->icon) == 'fas fa-dungeon' ? 'selected' : '' }}>🏰 Gate</option>
                             </optgroup>
                             <optgroup label="⚙️ Mechanical & Industrial">
-                                <option value="fas fa-cog" {{ old('icon', $service->icon) == 'fas fa-cog' ? 'selected' : '' }}>Cog/Gear</option>
-                                <option value="fas fa-cogs" {{ old('icon', $service->icon) == 'fas fa-cogs' ? 'selected' : '' }}>Cogs/Gears</option>
-                                <option value="fas fa-industry" {{ old('icon', $service->icon) == 'fas fa-industry' ? 'selected' : '' }}>Industry</option>
-                                <option value="fas fa-bolt" {{ old('icon', $service->icon) == 'fas fa-bolt' ? 'selected' : '' }}>Bolt/Power</option>
+                                <option value="fas fa-cog" {{ old('icon', $service->icon) == 'fas fa-cog' ? 'selected' : '' }}>⚙️ Cog/Gear</option>
+                                <option value="fas fa-industry" {{ old('icon', $service->icon) == 'fas fa-industry' ? 'selected' : '' }}>🏭 Industry</option>
+                                <option value="fas fa-bolt" {{ old('icon', $service->icon) == 'fas fa-bolt' ? 'selected' : '' }}>⚡ Bolt/Power</option>
+                                <option value="fas fa-fan" {{ old('icon', $service->icon) == 'fas fa-fan' ? 'selected' : '' }}>🌀 Fan</option>
+                                <option value="fas fa-oil-can" {{ old('icon', $service->icon) == 'fas fa-oil-can' ? 'selected' : '' }}>🛢️ Oil Can</option>
+                                <option value="fas fa-robot" {{ old('icon', $service->icon) == 'fas fa-robot' ? 'selected' : '' }}>🤖 Robot</option>
                             </optgroup>
                             <optgroup label="📋 Services & Quality">
-                                <option value="fas fa-check-circle" {{ old('icon', $service->icon) == 'fas fa-check-circle' ? 'selected' : '' }}>Check Circle</option>
-                                <option value="fas fa-certificate" {{ old('icon', $service->icon) == 'fas fa-certificate' ? 'selected' : '' }}>Certificate</option>
-                                <option value="fas fa-award" {{ old('icon', $service->icon) == 'fas fa-award' ? 'selected' : '' }}>Award</option>
-                                <option value="fas fa-medal" {{ old('icon', $service->icon) == 'fas fa-medal' ? 'selected' : '' }}>Medal</option>
-                                <option value="fas fa-star" {{ old('icon', $service->icon) == 'fas fa-star' ? 'selected' : '' }}>Star</option>
-                                <option value="fas fa-clipboard-check" {{ old('icon', $service->icon) == 'fas fa-clipboard-check' ? 'selected' : '' }}>Clipboard Check</option>
+                                <option value="fas fa-check-circle" {{ old('icon', $service->icon) == 'fas fa-check-circle' ? 'selected' : '' }}>✅ Check Circle</option>
+                                <option value="fas fa-certificate" {{ old('icon', $service->icon) == 'fas fa-certificate' ? 'selected' : '' }}>📜 Certificate</option>
+                                <option value="fas fa-award" {{ old('icon', $service->icon) == 'fas fa-award' ? 'selected' : '' }}>🏆 Award</option>
+                                <option value="fas fa-medal" {{ old('icon', $service->icon) == 'fas fa-medal' ? 'selected' : '' }}>🥇 Medal</option>
+                                <option value="fas fa-star" {{ old('icon', $service->icon) == 'fas fa-star' ? 'selected' : '' }}>⭐ Star</option>
+                                <option value="fas fa-clipboard-check" {{ old('icon', $service->icon) == 'fas fa-clipboard-check' ? 'selected' : '' }}>📋 Clipboard Check</option>
+                                <option value="fas fa-tasks" {{ old('icon', $service->icon) == 'fas fa-tasks' ? 'selected' : '' }}>☑️ Tasks</option>
+                                <option value="fas fa-clipboard-list" {{ old('icon', $service->icon) == 'fas fa-clipboard-list' ? 'selected' : '' }}>📝 Clipboard List</option>
+                                <option value="fas fa-thumbs-up" {{ old('icon', $service->icon) == 'fas fa-thumbs-up' ? 'selected' : '' }}>👍 Thumbs Up</option>
                             </optgroup>
                             <optgroup label="🔧 Maintenance & Repair">
-                                <option value="fas fa-toolbox" {{ old('icon', $service->icon) == 'fas fa-toolbox' ? 'selected' : '' }}>Toolbox</option>
-                                <option value="fas fa-truck" {{ old('icon', $service->icon) == 'fas fa-truck' ? 'selected' : '' }}>Truck</option>
-                                <option value="fas fa-box-open" {{ old('icon', $service->icon) == 'fas fa-box-open' ? 'selected' : '' }}>Box Open</option>
-                                <option value="fas fa-boxes" {{ old('icon', $service->icon) == 'fas fa-boxes' ? 'selected' : '' }}>Boxes</option>
+                                <option value="fas fa-toolbox" {{ old('icon', $service->icon) == 'fas fa-toolbox' ? 'selected' : '' }}>🧰 Toolbox</option>
+                                <option value="fas fa-truck" {{ old('icon', $service->icon) == 'fas fa-truck' ? 'selected' : '' }}>🚚 Truck</option>
+                                <option value="fas fa-box-open" {{ old('icon', $service->icon) == 'fas fa-box-open' ? 'selected' : '' }}>📦 Box Open</option>
+                                <option value="fas fa-boxes" {{ old('icon', $service->icon) == 'fas fa-boxes' ? 'selected' : '' }}>📦 Boxes</option>
+                                <option value="fas fa-broom" {{ old('icon', $service->icon) == 'fas fa-broom' ? 'selected' : '' }}>🧹 Broom</option>
+                                <option value="fas fa-spray-can" {{ old('icon', $service->icon) == 'fas fa-spray-can' ? 'selected' : '' }}>🧴 Spray Can</option>
                             </optgroup>
                             <optgroup label="🏢 Commercial">
-                                <option value="fas fa-store" {{ old('icon', $service->icon) == 'fas fa-store' ? 'selected' : '' }}>Store</option>
-                                <option value="fas fa-city" {{ old('icon', $service->icon) == 'fas fa-city' ? 'selected' : '' }}>City</option>
-                                <option value="fas fa-briefcase" {{ old('icon', $service->icon) == 'fas fa-briefcase' ? 'selected' : '' }}>Briefcase</option>
+                                <option value="fas fa-store" {{ old('icon', $service->icon) == 'fas fa-store' ? 'selected' : '' }}>🏪 Store</option>
+                                <option value="fas fa-city" {{ old('icon', $service->icon) == 'fas fa-city' ? 'selected' : '' }}>🌆 City</option>
+                                <option value="fas fa-briefcase" {{ old('icon', $service->icon) == 'fas fa-briefcase' ? 'selected' : '' }}>💼 Briefcase</option>
+                                <option value="fas fa-handshake" {{ old('icon', $service->icon) == 'fas fa-handshake' ? 'selected' : '' }}>🤝 Handshake</option>
+                                <option value="fas fa-chart-line" {{ old('icon', $service->icon) == 'fas fa-chart-line' ? 'selected' : '' }}>📈 Chart Line</option>
+                            </optgroup>
+                            <optgroup label="🚗 Transportation">
+                                <option value="fas fa-truck-moving" {{ old('icon', $service->icon) == 'fas fa-truck-moving' ? 'selected' : '' }}>🚚 Truck Moving</option>
+                                <option value="fas fa-shipping-fast" {{ old('icon', $service->icon) == 'fas fa-shipping-fast' ? 'selected' : '' }}>📦 Shipping Fast</option>
+                                <option value="fas fa-car" {{ old('icon', $service->icon) == 'fas fa-car' ? 'selected' : '' }}>🚗 Car</option>
+                                <option value="fas fa-shuttle-van" {{ old('icon', $service->icon) == 'fas fa-shuttle-van' ? 'selected' : '' }}>🚐 Shuttle Van</option>
+                            </optgroup>
+                            <optgroup label="💡 Technology & Innovation">
+                                <option value="fas fa-lightbulb" {{ old('icon', $service->icon) == 'fas fa-lightbulb' ? 'selected' : '' }}>💡 Lightbulb</option>
+                                <option value="fas fa-rocket" {{ old('icon', $service->icon) == 'fas fa-rocket' ? 'selected' : '' }}>🚀 Rocket</option>
+                                <option value="fas fa-microchip" {{ old('icon', $service->icon) == 'fas fa-microchip' ? 'selected' : '' }}>🔌 Microchip</option>
+                                <option value="fas fa-laptop" {{ old('icon', $service->icon) == 'fas fa-laptop' ? 'selected' : '' }}>💻 Laptop</option>
+                                <option value="fas fa-mobile-alt" {{ old('icon', $service->icon) == 'fas fa-mobile-alt' ? 'selected' : '' }}>📱 Mobile</option>
                             </optgroup>
                         </select>
                     </div>
@@ -161,21 +188,37 @@
                 <label for="image" class="block text-sm font-semibold text-gray-700 mb-2">
                     Service Image
                 </label>
+                
                 @if($service->image)
-                    <div class="mb-3">
-                        <img src="{{ imageUrl($service->image) }}" alt="{{ $service->title }}" class="w-full h-48 object-cover rounded-lg">
-                        <p class="mt-2 text-xs text-gray-600">Current image (upload new to replace)</p>
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-600 mb-2">Current Image:</p>
+                        <div class="relative inline-block">
+                            <img src="{{ imageUrl($service->image) }}" 
+                                 alt="{{ $service->title }}" 
+                                 class="h-48 w-auto object-cover rounded-lg shadow-md"
+                                 id="currentImage">
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">Upload a new image to replace the current one</p>
                     </div>
                 @endif
-                <input type="file" 
-                       name="image" 
-                       id="image" 
-                       accept="image/*"
-                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 @error('image') border-red-500 @enderror">
-                <p class="mt-2 text-xs text-gray-500">
-                    <i class="fas fa-info-circle mr-1"></i>
-                    Upload a high-quality image (JPEG, PNG, WebP). Max 2MB.
-                </p>
+
+                <div class="mt-2 flex items-center">
+                    <label class="w-full flex flex-col items-center px-4 py-6 bg-white border-2 border-gray-300 border-dashed rounded-lg cursor-pointer hover:border-blue-500 transition duration-200">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-2"></i>
+                        <span class="text-sm text-gray-600">Click to upload new image</span>
+                        <span class="text-xs text-gray-500 mt-1">JPEG, PNG, JPG, WEBP (Max 2MB)</span>
+                        <input type="file" 
+                               name="image" 
+                               id="image" 
+                               accept=".jpeg,.jpg,.png,.webp"
+                               class="hidden"
+                               onchange="previewImage(event)">
+                    </label>
+                </div>
+                <div id="imagePreview" class="mt-4 hidden">
+                    <p class="text-sm text-gray-600 mb-2">New Image Preview:</p>
+                    <img src="" alt="Preview" class="h-48 w-auto object-cover rounded-lg shadow-md">
+                </div>
                 @error('image')
                     <p class="mt-2 text-sm text-red-600 flex items-center">
                         <i class="fas fa-exclamation-circle mr-1"></i>{{ $message }}
@@ -290,19 +333,56 @@
 
 @push('scripts')
 <script>
+    $(document).ready(function() {
+        // Initialize Select2 with search
+        $('#icon').select2({
+            placeholder: '-- Select Icon --',
+            allowClear: false,
+            width: '100%'
+        });
+
+        // Update icon preview on change
+        $('#icon').on('change', function() {
+            updateIconPreview($(this).val());
+        });
+
+        // Set initial preview on page load
+        if ($('#icon').val()) {
+            updateIconPreview($('#icon').val());
+        }
+    });
+
     // Update icon preview
     function updateIconPreview(iconClass) {
         const preview = document.getElementById('icon-preview');
         preview.className = iconClass + ' text-3xl text-blue-600';
     }
 
-    // Set initial preview on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        const iconSelect = document.getElementById('icon');
-        if (iconSelect.value) {
-            updateIconPreview(iconSelect.value);
+    // Preview image before upload
+    function previewImage(event) {
+        const file = event.target.files[0];
+        const preview = document.getElementById('imagePreview');
+        const img = preview.querySelector('img');
+        
+        if (file) {
+            // Check file size (2MB = 2 * 1024 * 1024 bytes)
+            if (file.size > 2 * 1024 * 1024) {
+                alert('File size must be less than 2MB');
+                event.target.value = '';
+                preview.classList.add('hidden');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                img.src = e.target.result;
+                preview.classList.remove('hidden');
+            }
+            reader.readAsDataURL(file);
+        } else {
+            preview.classList.add('hidden');
         }
-    });
+    }
 </script>
 @endpush
 
