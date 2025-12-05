@@ -40,64 +40,64 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 min-h-screen flex items-center justify-center overflow-hidden">
+<body class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 min-h-screen flex items-center justify-center overflow-x-hidden py-8">
     
     {{-- Background Pattern --}}
     <div class="absolute inset-0 bg-black opacity-20"></div>
     <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
     
-    <div class="container mx-auto px-4 relative z-10">
+    <div class="container mx-auto px-4 relative z-10 w-full">
         <div class="max-w-4xl mx-auto text-center animate-fade-in">
             
             {{-- Logo --}}
-            <div class="mb-8 flex justify-center">
+            <div class="mb-6 md:mb-8 flex justify-center">
                 <img src="{{ asset('images/logo.png') }}" 
                      alt="HTR ENGINEERING PTE LTD" 
-                     class="h-24 w-auto object-contain bg-white rounded-lg p-2 logo-glow">
+                     class="h-16 md:h-24 w-auto object-contain bg-white rounded-lg p-2 logo-glow">
             </div>
             
             {{-- Company Name --}}
-            <div class="mb-6">
-                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-2">
+            <div class="mb-4 md:mb-6">
+                <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-2">
                     HTR ENGINEERING
                 </h1>
-                <p class="text-xl md:text-2xl text-blue-200 font-medium">PTE LTD</p>
+                <p class="text-lg md:text-2xl text-blue-200 font-medium">PTE LTD</p>
             </div>
             
             {{-- Main Message --}}
-            <div class="mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            <div class="mb-8 md:mb-12">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 md:mb-4 px-2">
                     We Are Getting Ready to Launch! 🚀
                 </h2>
-                <p class="text-xl text-blue-100 max-w-2xl mx-auto">
+                <p class="text-base sm:text-lg md:text-xl text-blue-100 max-w-2xl mx-auto px-4">
                     Our new and improved website is coming soon. We're working hard to bring you the best experience for all your roller shutter and security solution needs in Singapore.
                 </p>
             </div>
             
             {{-- Countdown Timer --}}
-            <div class="mb-12">
-                <p class="text-blue-200 text-lg mb-6 font-medium">Launching In</p>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+            <div class="mb-8 md:mb-12">
+                <p class="text-blue-200 text-base md:text-lg mb-4 md:mb-6 font-medium">Launching In</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-3xl mx-auto">
                     {{-- Days --}}
-                    <div class="countdown-box rounded-2xl p-6 animate-pulse-slow">
-                        <div id="days" class="text-5xl md:text-6xl font-bold text-white mb-2">00</div>
-                        <div class="text-blue-200 text-sm md:text-base uppercase tracking-wider">Days</div>
+                    <div class="countdown-box rounded-xl md:rounded-2xl p-4 md:p-6 animate-pulse-slow">
+                        <div id="days" class="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-1 md:mb-2">00</div>
+                        <div class="text-blue-200 text-xs sm:text-sm md:text-base uppercase tracking-wider">Days</div>
                     </div>
                     
                     {{-- Hours --}}
-                    <div class="countdown-box rounded-2xl p-6 animate-pulse-slow" style="animation-delay: 0.2s;">
-                        <div id="hours" class="text-5xl md:text-6xl font-bold text-white mb-2">00</div>
-                        <div class="text-blue-200 text-sm md:text-base uppercase tracking-wider">Hours</div>
+                    <div class="countdown-box rounded-xl md:rounded-2xl p-4 md:p-6 animate-pulse-slow" style="animation-delay: 0.2s;">
+                        <div id="hours" class="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-1 md:mb-2">00</div>
+                        <div class="text-blue-200 text-xs sm:text-sm md:text-base uppercase tracking-wider">Hours</div>
                     </div>
                     
                     {{-- Minutes --}}
-                    <div class="countdown-box rounded-2xl p-6 animate-pulse-slow" style="animation-delay: 0.4s;">
-                        <div id="minutes" class="text-5xl md:text-6xl font-bold text-white mb-2">00</div>
-                        <div class="text-blue-200 text-sm md:text-base uppercase tracking-wider">Minutes</div>
+                    <div class="countdown-box rounded-xl md:rounded-2xl p-4 md:p-6 animate-pulse-slow" style="animation-delay: 0.4s;">
+                        <div id="minutes" class="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-1 md:mb-2">00</div>
+                        <div class="text-blue-200 text-xs sm:text-sm md:text-base uppercase tracking-wider">Minutes</div>
                     </div>
                     
                     {{-- Seconds --}}
-                    <div class="countdown-box rounded-2xl p-6 animate-pulse-slow" style="animation-delay: 0.6s;">
+                    <div class="countdown-box rounded-xl md:rounded-2xl p-4 md:p-6 animate-pulse-slow" style="animation-delay: 0.6s;">
                         <div id="seconds" class="text-5xl md:text-6xl font-bold text-white mb-2">00</div>
                         <div class="text-blue-200 text-sm md:text-base uppercase tracking-wider">Seconds</div>
                     </div>
@@ -105,37 +105,37 @@
             </div>
             
             {{-- Contact Information --}}
-            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 max-w-2xl mx-auto border border-white/20">
-                <h3 class="text-2xl font-bold text-white mb-6">Need Immediate Assistance?</h3>
-                <div class="grid md:grid-cols-2 gap-6 text-left">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-white text-blue-900 p-3 rounded-full">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="bg-white/10 backdrop-blur-lg rounded-xl md:rounded-2xl p-6 md:p-8 max-w-2xl mx-auto border border-white/20">
+                <h3 class="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">Need Immediate Assistance?</h3>
+                <div class="grid md:grid-cols-2 gap-4 md:gap-6">
+                    <div class="flex items-center gap-3 md:gap-4 bg-white/5 rounded-lg p-3 md:p-0 md:bg-transparent">
+                        <div class="bg-white text-blue-900 p-2 md:p-3 rounded-full flex-shrink-0">
+                            <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
                         </div>
-                        <div>
-                            <div class="text-blue-200 text-sm">Call Us</div>
-                            <a href="tel:+6586973181" class="text-white font-bold text-lg hover:text-blue-300 transition-colors">+65 8697 3181</a>
+                        <div class="text-left">
+                            <div class="text-blue-200 text-xs md:text-sm">Call Us</div>
+                            <a href="tel:+6586973181" class="text-white font-bold text-base md:text-lg hover:text-blue-300 transition-colors">+65 8697 3181</a>
                         </div>
                     </div>
                     
-                    <div class="flex items-center gap-4">
-                        <div class="bg-white text-blue-900 p-3 rounded-full">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="flex items-center gap-3 md:gap-4 bg-white/5 rounded-lg p-3 md:p-0 md:bg-transparent">
+                        <div class="bg-white text-blue-900 p-2 md:p-3 rounded-full flex-shrink-0">
+                            <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
                         </div>
-                        <div>
-                            <div class="text-blue-200 text-sm">Email Us</div>
-                            <a href="mailto:rollershutter14@gmail.com" class="text-white font-bold text-lg hover:text-blue-300 transition-colors break-all">rollershutter14@gmail.com</a>
+                        <div class="text-left">
+                            <div class="text-blue-200 text-xs md:text-sm">Email Us</div>
+                            <a href="mailto:rollershutter14@gmail.com" class="text-white font-bold text-sm md:text-base hover:text-blue-300 transition-colors break-all leading-tight">rollershutter14@gmail.com</a>
                         </div>
                     </div>
                 </div>
             </div>
             
             {{-- Footer --}}
-            <div class="mt-12 text-blue-200 text-sm">
+            <div class="mt-8 md:mt-12 text-blue-200 text-xs md:text-sm">
                 <p>&copy; {{ date('Y') }} HTR ENGINEERING PTE LTD. All rights reserved.</p>
             </div>
         </div>
