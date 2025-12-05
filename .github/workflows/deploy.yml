@@ -36,7 +36,7 @@ jobs:
       - name: ⚙️ Build Assets (Vite)
         run: npm run build
 
-      # 🚀 ফাইল আপলোড সেকশন
+      # 🚀 ফাইল আপলোড সেকশন (Fixed for Connection Error)
       - name: 📂 Deploy to cPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -44,6 +44,11 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /public_html/
+          
+          # এই লাইনগুলো কানেকশন এরর সমাধান করবে
+          protocol: ftp
+          port: 21
+          security: loose
           
           # সার্ভার ক্র্যাশ রোধ করতে ভারী ফোল্ডারগুলো বাদ দেওয়া হয়েছে
           exclude: |
