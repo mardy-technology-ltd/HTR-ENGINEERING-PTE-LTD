@@ -170,7 +170,7 @@
         <div class="border-t border-gray-800 mt-8 pt-8">
             <div class="flex flex-col md:flex-row justify-between items-center text-sm pb-20 md:pb-4 pr-0 md:pr-32">
                 <p class="mb-4 md:mb-0">
-                    &copy; {{ date('Y') }} HTR ENGINEERING PTE LTD. All rights reserved.
+                    &copy; {{ date('Y') }} HTR ENGINEERING PTE LTD. | Proudly Engineering the Future.
                 </p>
                 <div class="flex space-x-6">
                     <a href="{{ route('privacy-policy') }}" class="hover:text-primary-400 transition-colors">Privacy Policy</a>
