@@ -1,4 +1,4 @@
-name: Deploy to cPanel via FTP
+name: Deploy to cPanel (Final Safe Mode)
 
 on:
   push:
@@ -6,64 +6,57 @@ on:
       - production
 
 jobs:
-  deploy:
-    name: Build and Deploy to Production
+  web-deploy:
+    name: 🎉 Build and Deploy
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: Setup PHP 8.2
+      - name: 🟢 Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
           extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, dom, filter, gd, json, zip
           tools: composer:v2
-          coverage: none
 
-      - name: Install Composer dependencies
+      # ডিপেন্ডেন্সি ইনস্টল হবে কিন্তু সার্ভারে আপলোড হবে না (সেফটি)
+      - name: 📦 Install Composer Dependencies
         run: composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction --no-progress
 
-      - name: Setup Node.js 18
+      - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
 
-      - name: Install NPM dependencies
+      - name: 📦 Install NPM Dependencies
         run: npm install
 
-      - name: Build assets with Vite
+      - name: ⚙️ Build Assets (Vite)
         run: npm run build
 
-      - name: Deploy to cPanel via FTP
+      # 🚀 ফাইল আপলোড সেকশন
+      - name: 📂 Deploy to cPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /public_html/
+          
+          # সার্ভার ক্র্যাশ রোধ করতে ভারী ফোল্ডারগুলো বাদ দেওয়া হয়েছে
           exclude: |
             **/.git*
             **/.git*/**
             **/.github/**
             **/node_modules/**
+            **/vendor/**
             **/tests/**
             **/.env
-            **/.env.*
             **/storage/*.key
             **/storage/framework/cache/**
             **/storage/framework/sessions/**
             **/storage/framework/views/**
             **/storage/logs/**
-            **/.editorconfig
-            **/.gitignore
-            **/.gitattributes
-            **/phpunit.xml
             **/README.md
-            **/package.json
-            **/package-lock.json
-            **/vite.config.js
-            **/tailwind.config.js
-            **/postcss.config.js
