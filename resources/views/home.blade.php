@@ -504,9 +504,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Services Slider
     const servicesData = @json($services);
+    const serviceBaseUrl = "{{ url('/service') }}";
     initializeSlider('servicesSlider', servicesData, function(service) {
         return `
-                <a href="/service/${service.slug}" class="slider-card group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 block">
+                <a href="${serviceBaseUrl}/${service.slug}" class="slider-card group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 block">
                     ${service.image ? `
                         <div class="absolute inset-0 z-0">
                             <img src="${imageUrl(service.image)}" 
