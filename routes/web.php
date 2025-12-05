@@ -34,6 +34,30 @@ Route::get('/terms-of-service', [PolicyController::class, 'termsOfService'])->na
 // Sitemap
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
+// Cache Clear Route (for deployment)
+Route::get('/clear-all-cache-now', function() {
+    $token = request()->get('token');
+    if ($token !== 'HTR2025!Clear') {
+        abort(403, 'Access denied. Invalid token.');
+    }
+    
+    \Artisan::call('route:clear');
+    \Artisan::call('config:clear');
+    \Artisan::call('cache:clear');
+    \Artisan::call('view:clear');
+    
+    return response()->json([
+        'success' => true,
+        'message' => '✨ All cache cleared successfully!',
+        'cleared' => [
+            'routes' => 'cleared',
+            'config' => 'cleared',
+            'cache' => 'cleared',
+            'views' => 'cleared',
+        ]
+    ]);
+})->name('cache.clear');
+
 // Breeze Authentication Routes
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
