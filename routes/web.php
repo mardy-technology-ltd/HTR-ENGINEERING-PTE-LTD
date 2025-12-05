@@ -34,6 +34,12 @@ Route::get('/terms-of-service', [PolicyController::class, 'termsOfService'])->na
 // Sitemap
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
+// Secret Access Route - Bypass Coming Soon Page
+Route::get('/secret-access', function() {
+    session(['bypass_coming_soon' => true]);
+    return redirect('/')->with('success', 'Full site access granted! You can now use the application normally.');
+})->name('secret.access');
+
 // Cache Clear Route (for deployment)
 Route::get('/clear-all-cache-now', function() {
     $token = request()->get('token');

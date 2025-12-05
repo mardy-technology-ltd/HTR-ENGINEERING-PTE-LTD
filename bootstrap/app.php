@@ -14,6 +14,12 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => \App\Http\Middleware\CheckAdmin::class,
             'throttle.contact' => \App\Http\Middleware\ThrottleContactForm::class,
+            'coming.soon' => \App\Http\Middleware\ComingSoonMiddleware::class,
+        ]);
+        
+        // Apply Coming Soon middleware to web routes
+        $middleware->web(append: [
+            \App\Http\Middleware\ComingSoonMiddleware::class,
         ]);
     })
     ->withProviders([
