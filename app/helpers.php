@@ -1,5 +1,8 @@
 <?php
 
+// Include ImageHelper class first
+require_once __DIR__ . '/helpers/ImageHelper.php';
+
 if (! function_exists('setting')) {
     /**
      * Get a setting value from cache
