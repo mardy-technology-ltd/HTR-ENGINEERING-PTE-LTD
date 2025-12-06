@@ -1,0 +1,68 @@
+name: Deploy UAT to cPanel
+
+on:
+  push:
+    branches:
+      - uat  # <--- ১. শুধু uat ব্রাঞ্চে পুশ করলে এটি চালু হবে
+
+jobs:
+  web-deploy:
+    name: 🚧 Build and Deploy UAT
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, dom, filter, gd, json, zip
+          tools: composer:v2
+
+      # UAT তেও প্রোডাকশনের মতোই পরিবেশ রাখা হলো (no-dev)
+      - name: 📦 Install Composer Dependencies
+        run: composer install --no-dev --optimize-autoloader --prefer-dist --no-interaction --no-progress
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: 📦 Install NPM Dependencies
+        run: npm install
+
+      - name: ⚙️ Build Assets (Vite)
+        run: npm run build
+
+      # 🚀 ফাইল আপলোড সেকশন (UAT)
+      - name: 📂 Deploy to UAT Folder via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          
+          # 👇 ২. এখানে ফোল্ডারের নাম পরিবর্তন করা হয়েছে
+          server-dir: /uat.rollershuttersingapore.com/
+          
+          protocol: ftp
+          port: 21
+          security: loose
+          
+          # ভারী ফোল্ডার এবং এনভায়রনমেন্ট ফাইল বাদ দেওয়া হয়েছে (আগের মতোই)
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            **/vendor/**
+            **/tests/**
+            **/.env
+            **/storage/*.key
+            **/storage/framework/cache/**
+            **/storage/framework/sessions/**
+            **/storage/framework/views/**
+            **/storage/logs/**
+            **/README.md
