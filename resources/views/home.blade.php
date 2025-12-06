@@ -12,7 +12,7 @@
     <div class="container mx-auto px-4 py-20 md:py-32 relative z-10">
         <div class="max-w-4xl">
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Premium Roller Shutters & <span class="text-primary-300">Security Solutions</span> in Singapore
+                Testing uat auto deploy
             </h1>
             <p class="text-xl md:text-2xl mb-8 text-gray-200">
                 Quality construction services with over 15 years of experience. We specialize in roller shutters, security grilles, automatic gates, and more.
